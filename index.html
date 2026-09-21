@@ -1,314 +1,362 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Guía para tramitar el CUD en CABA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #F3EEE2;
-    --bg-raised: #FFFFFF;
-    --ink: #241E1A;
-    --ink-soft: #5E5147;
-    --line: #DECFB8;
-    --teal: #8E3A46;
-    --teal-deep: #6B2530;
-    --teal-tint: #F1E2E4;
-    --ochre: #B8862E;
-    --ochre-tint: #F6EAD2;
-    --rust: #B1481F;
-    --rust-tint: #F7E1D3;
-    --card-shadow: 0 1px 0 rgba(36,30,26,0.07);
-    color-scheme: light;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuidar a nuestros padres - Portal de Recursos</title>
+    <!-- Google Fonts & FontAwesome para iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2C5282;
+            --primary-light: #EBF8FF;
+            --accent: #319795;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --bg-color: #F7FAFC;
+            --card-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+            --radius: 16px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 16.5px;
-    line-height: 1.6;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  a { color: var(--teal-deep); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  .shell { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-  /* ===== Hero ===== */
-  .hero { padding: 48px 0 32px; border-bottom: 1px solid var(--line); }
-  .hero-eyebrow { color: var(--teal-deep); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
-    line-height: 1.1;
-    margin: 0 0 14px;
-    letter-spacing: -0.01em;
-    max-width: 20ch;
-  }
-  .hero p.lede { max-width: 62ch; font-size: 1.06rem; color: var(--ink-soft); margin: 0; }
+        /* Header Minimalista */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
 
-  /* ===== Chapters ===== */
-  main { padding: 40px 0 60px; }
-  section.chapter { padding: 8px 0 44px; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
-  section.chapter:last-of-type { border-bottom: none; }
+        .header-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-  .chapter-head { display: flex; gap: 16px; align-items: baseline; margin-bottom: 16px; }
-  .chapter-head .num {
-    font-family: 'Fraunces', serif;
-    font-size: 1rem;
-    color: var(--teal);
-    border: 1px solid var(--teal);
-    border-radius: 50%;
-    width: 34px; height: 34px; min-width: 34px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 500;
-  }
-  .chapter-head h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+        header h1 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
 
-  .chapter-body { padding-left: 50px; }
-  .chapter-body > p { max-width: 68ch; }
-  .chapter-body h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.1rem; margin: 26px 0 8px; }
-  .chapter-body ul, .chapter-body ol { max-width: 68ch; padding-left: 22px; }
-  .chapter-body li { margin-bottom: 5px; }
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.4rem;
+        }
 
-  .official-link {
-    display: inline-flex; align-items: center; gap: 7px;
-    border: 1px solid var(--teal); color: var(--teal-deep);
-    text-decoration: none; border-radius: 100px;
-    padding: 7px 15px; font-size: 0.88rem; font-weight: 600;
-    margin: 4px 8px 4px 0;
-  }
-  .official-link:hover { background: var(--teal-tint); }
-  .official-link .arrow { transition: transform .15s; }
-  .official-link:hover .arrow { transform: translateX(2px); }
-  .link-row { margin: 14px 0 6px; }
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
 
-  /* principle box (callout destacado) */
-  .principle-box { background: var(--teal-tint); border-radius: 10px; padding: 18px 20px; max-width: 68ch; margin: 4px 0 20px; }
-  .principle-box .pb-label {
-    font-size: 0.78rem; font-weight: 700; color: var(--teal-deep);
-    text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px;
-  }
-  .principle-box p { margin: 0 0 10px; }
-  .principle-box p:last-child { margin-bottom: 0; }
+        /* Buscador */
+        .search-container {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
 
-  /* alert box */
-  .alert { border: 1px solid var(--rust); background: var(--rust-tint); border-radius: 10px; padding: 16px 20px; max-width: 68ch; margin: 16px 0; }
-  .alert .alert-label { font-weight: 700; color: var(--rust); font-size: 0.85rem; margin-bottom: 6px; }
-  .alert p { margin: 0; }
+        .search-container i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
 
-  /* tip box */
-  .tip { background: var(--ochre-tint); border-radius: 10px; padding: 16px 20px; max-width: 68ch; margin: 16px 0; }
-  .tip .tip-label { font-weight: 700; color: var(--ochre); font-size: 0.78rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
-  .tip p { margin: 0; }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.2rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            transition: var(--transition);
+            outline: none;
+        }
 
-  /* channel cards */
-  .channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; max-width: 78ch; margin: 14px 0; }
-  .channel-card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; box-shadow: var(--card-shadow); }
-  .channel-card .ch-title { font-weight: 700; margin-bottom: 4px; }
-  .channel-card .ch-detail { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
 
-  /* table */
-  .compare-table { max-width: 78ch; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 16px 0; }
-  .compare-row { display: grid; grid-template-columns: 90px 1fr; border-bottom: 1px solid var(--line); align-items: center; }
-  .compare-row:last-child { border-bottom: none; }
-  .compare-row.head {
-    background: var(--teal-tint); font-size: 0.78rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .03em; color: var(--teal-deep);
-  }
-  .compare-row > div { padding: 10px 14px; font-size: 0.92rem; }
-  .compare-row .rubro { font-weight: 700; color: var(--teal-deep); }
+        /* Secciones y Tarjetas */
+        .section-block {
+            margin-bottom: 2.5rem;
+        }
 
-  .plain-link { display: inline-flex; align-items: center; gap: 6px; color: var(--teal-deep); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
-  .plain-link:hover { text-decoration: underline; }
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.4rem;
+        }
 
-  footer { border-top: 1px solid var(--line); padding: 26px 0 50px; color: var(--ink-soft); font-size: 0.86rem; max-width: 68ch; }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
 
-  @media (max-width: 640px) {
-    .chapter-body { padding-left: 0; margin-left: 0; }
-    .chapter-head .num { width: 30px; height: 30px; min-width: 30px; }
-  }
-</style>
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px -5px rgba(44, 82, 130, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-content h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .card-footer i {
+            margin-left: 0.4rem;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover .card-footer i {
+            transform: translateX(4px);
+        }
+
+        /* Footer general */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+
+        /* Mensaje sin resultados */
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="shell">
-
-  <section class="hero">
-    <div class="hero-eyebrow">Cuidar a Nuestros Padres</div>
-    <h1>Guía para tramitar el CUD en CABA</h1>
-    <p class="lede">Certificado Único de Discapacidad para adultos mayores. Vías de inicio, documentación, planillas por especialidad, la junta evaluadora y los puntos de contacto, todo con los enlaces oficiales a mano.</p>
-  </section>
-
-  <main>
-
-    <section class="chapter">
-      <div class="principle-box">
-        <div class="pb-label">Antes de empezar</div>
-        <p>El sitio nacional tiene un cuestionario interactivo que, según la cobertura médica y el tipo de afectación (intelectual y mental, visual, motora, auditiva, respiratoria, cardiovascular, renal o urológica, digestiva o hepática) y la localidad, indica exactamente qué llevar y a dónde ir. Es el punto de partida recomendado, antes de reunir papeles.</p>
-        <p>La página del trámite en el sitio de la Ciudad también es bastante completa: reúne, por tipo de deficiencia, los requisitos y las planillas para descargar.</p>
-        <div class="link-row" style="margin:10px 0 0;">
-          <a class="official-link" href="https://www.argentina.gob.ar/cud/consulta-de-requisitos-para-tramitar-el-cud" target="_blank" rel="noopener">Abrir el cuestionario de requisitos <span class="arrow">→</span></a>
-          <a class="official-link" href="https://buenosaires.gob.ar/tramites/solicitud-del-certificado-unico-de-discapacidad-cud" target="_blank" rel="noopener">Abrir la página del trámite en CABA <span class="arrow">→</span></a>
+    <header>
+        <div class="header-container">
+            <h1><i class="fa-solid fa-hands-holding-child"></i> Cuidar a nuestros padres</h1>
+            <p>Guía de recursos y trámites esenciales para la organización familiar</p>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <section class="chapter" id="s1">
-      <div class="chapter-head"><div class="num">1</div><h2>Vías para iniciar el trámite</h2></div>
-      <div class="chapter-body">
-        <div class="channels">
-          <div class="channel-card">
-            <div class="ch-title">Online, por TAD</div>
-            <p class="ch-detail">Con usuario y clave miBA. Se completa el formulario y se adjunta la documentación escaneada (DNI e informes médicos). Aprobado el ingreso, se notifica el turno para la junta.</p>
-          </div>
-          <div class="channel-card">
-            <div class="ch-title">Presencial, en la comuna</div>
-            <p class="ch-detail">Se presenta la documentación inicial en la Sede de Atención Social correspondiente al domicilio. Un operador social revisa la carpeta y formaliza el turno para la Junta Evaluadora.</p>
-            <p class="ch-detail" style="margin-top:8px;"><a class="plain-link" href="https://buenosaires.gob.ar/comunas" target="_blank" rel="noopener">Buscar mi comuna →</a></p>
-          </div>
-        </div>
-        <div class="link-row">
-          <a class="official-link" href="https://tad.buenosaires.gob.ar" target="_blank" rel="noopener">Iniciar por TAD <span class="arrow">→</span></a>
-        </div>
-        <p style="font-size:0.9rem; color:var(--ink-soft);">Consultas CUD online: consultascudonline@buenosaires.gob.ar</p>
-      </div>
-    </section>
-
-    <section class="chapter" id="s2">
-      <div class="chapter-head"><div class="num">2</div><h2>Documentación obligatoria</h2></div>
-      <div class="chapter-body">
-        <h3>Identidad</h3>
-        <ul>
-          <li>DNI vigente, original y fotocopia, con domicilio actual en CABA.</li>
-          <li>Si el DNI está en trámite o recién se actualizó el domicilio, agregar una constancia o factura de servicio a nombre del titular que certifique la residencia en la Ciudad.</li>
-        </ul>
-
-        <h3>Base médica</h3>
-        <ol>
-          <li>Formulario de solicitud de CUD.</li>
-          <li>Certificado médico o resumen de historia clínica, con menos de 6 meses de vigencia, firmado y sellado por el médico tratante. Debe incluir diagnóstico, estado de salud actual, secuelas o consecuencias de la patología y detalle de los tratamientos en curso.</li>
-        </ol>
-        <p style="font-size:0.9rem; color:var(--ink-soft);">A esto se suman la planilla por especialidad (punto 3), la descripción de las limitaciones en la vida diaria (punto 4) y los estudios complementarios (punto 5).</p>
-      </div>
-    </section>
-
-    <section class="chapter" id="s3">
-      <div class="chapter-head"><div class="num">3</div><h2>Planillas por especialidad</h2></div>
-      <div class="chapter-body">
-        <p>La Ciudad publica, para cada tipo de deficiencia, la planilla específica lista para descargar. Es el enlace más directo para saber qué planilla corresponde y bajarla.</p>
-        <div class="link-row">
-          <a class="official-link" href="https://buenosaires.gob.ar/tramites/solicitud-del-certificado-unico-de-discapacidad-cud" target="_blank" rel="noopener">Ver y descargar las planillas por especialidad <span class="arrow">→</span></a>
+    <main>
+        <!-- Buscador en tiempo real -->
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar guía, trámite o sección...">
         </div>
 
-        <div class="compare-table">
-          <div class="compare-row head"><div>Planilla</div><div>Se usa para</div></div>
-          <div class="compare-row"><div class="rubro">P1</div><div>Deficiencia mental o intelectual, trastornos mentales (incluye demencias)</div></div>
-          <div class="compare-row"><div class="rubro">P3</div><div>Epilepsia</div></div>
-          <div class="compare-row"><div class="rubro">P4</div><div>Cardiológico</div></div>
-          <div class="compare-row"><div class="rubro">P5</div><div>Renal y/o urológico</div></div>
-          <div class="compare-row"><div class="rubro">P6</div><div>Discapacidad visual</div></div>
-          <div class="compare-row"><div class="rubro">P7</div><div>Columna vertebral</div></div>
-          <div class="compare-row"><div class="rubro">P8</div><div>Artritis reumatoidea</div></div>
-          <div class="compare-row"><div class="rubro">P9</div><div>Miastenia gravis</div></div>
-          <div class="compare-row"><div class="rubro">P10</div><div>Esclerosis múltiple</div></div>
-          <div class="compare-row"><div class="rubro">P11</div><div>Discapacidad auditiva</div></div>
+        <div id="noResults" class="no-results">
+            <i class="fa-solid fa-face-sad-tear" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+            <p>No se encontraron resultados para tu búsqueda.</p>
         </div>
-        <p style="font-size:0.88rem; color:var(--ink-soft); margin-top:6px;">Para respiratorio, digestivo o hepático, y otras condiciones sin planilla propia, se usa el resumen de historia clínica con el mismo contenido exigido.</p>
 
-        <div class="tip">
-          <div class="tip-label">Importante</div>
-          <p>La planilla debe estar completada y firmada de puño y letra por el médico tratante, no alcanza con una firma digital o escaneada aparte. Lo mismo aplica a la planilla de limitaciones del punto 4.</p>
+        <div id="sectionsContainer">
+            
+            <!-- 1. PREPARARSE (Primero) -->
+            <section class="section-block" data-section="prepararse">
+                <h2 class="section-title"><i class="fa-solid fa-compass"></i> Prepararse</h2>
+                <div class="cards-grid">
+                    <!-- Nota: Puedes crear y enlazar tu archivo aquí, ej: prepararse.html -->
+                    <a href="prepararse.html" class="card" data-keywords="urgencia antes anticipar documentacion botiquin guia">
+                        <div class="card-content">
+                            <h3>Guía de Anticipación</h3>
+                            <p>Información útil para organizar datos médicos, contactos y pautas antes de una urgencia.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Ver guía</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 2. CUD -->
+            <section class="section-block" data-section="cud">
+                <h2 class="section-title"><i class="fa-solid fa-id-card"></i> Certificado Único de Discapacidad (CUD)</h2>
+                <div class="cards-grid">
+                    <a href="CUD-Caba.html" class="card" data-keywords="cud caba capital federal discapacidad tramite requisitos">
+                        <div class="card-content">
+                            <h3>Tramitar el CUD en CABA</h3>
+                            <p>Paso a paso, documentación necesaria y centros de atención en la Ciudad Autónoma de Buenos Aires.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Ver trámite</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <a href="CUD-VteLopez.html" class="card" data-keywords="cud vicente lopez vte lopez provincia junta medica discapacidad">
+                        <div class="card-content">
+                            <h3>Tramitar el CUD en Vicente López</h3>
+                            <p>Guía específica, turnos y oficinas correspondientes al partido de Vicente López.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Ver trámite</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 3. CONTRATACIÓN Y MARCO LABORAL -->
+            <section class="section-block" data-section="contratacion">
+                <h2 class="section-title"><i class="fa-solid fa-file-contract"></i> Contratación y Marco Laboral</h2>
+                <div class="cards-grid">
+                    <a href="Contratacioncuidadoras.html" class="card" data-keywords="contratacion sueldos calculo reglamento trabajo casas particulares aportes salarios">
+                        <div class="card-content">
+                            <h3>Contratación y Sueldos</h3>
+                            <p>Parámetros a tener en cuenta: escalas salariales, cálculos de sueldos, aportes y reglamento de trabajo para casas particulares / cuidadores.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Ver detalles</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
         </div>
-      </div>
-    </section>
+    </main>
 
-    <section class="chapter" id="s4">
-      <div class="chapter-head"><div class="num">4</div><h2>Limitaciones en las actividades de la vida diaria</h2></div>
-      <div class="chapter-body">
-        <p>Es un requisito aparte, exigido para todas las especialidades: el certificado médico debe describir cómo la condición afecta la autonomía, el desplazamiento, el cuidado personal y otras actividades cotidianas. Sin esta descripción, la Junta Evaluadora puede dejar el trámite pendiente aunque el resto de la documentación esté completa.</p>
-        <div class="link-row">
-          <a class="official-link" href="https://buenosaires.gob.ar/sites/default/files/2026-05/Planilla%20de%20resumen%20de%20historia%20cl%C3%ADnica%20para%20el%20CUD_GCABA_0.pdf" target="_blank" rel="noopener">Descargar la planilla de resumen de historia clínica <span class="arrow">→</span></a>
-        </div>
-        <div class="tip">
-          <div class="tip-label">Importante</div>
-          <p>Igual que la planilla por especialidad, esta debe estar firmada de puño y letra por el médico tratante.</p>
-        </div>
-      </div>
-    </section>
+    <footer>
+        <p>Portal de acompañamiento familiar &copy; 2026</p>
+    </footer>
 
-    <section class="chapter" id="s5">
-      <div class="chapter-head"><div class="num">5</div><h2>Estudios complementarios</h2></div>
-      <div class="chapter-body">
-        <p>De los últimos 12 meses, que certifiquen el diagnóstico: laboratorio, estudios genéticos, psicológicos, psicométricos, imágenes, audiometrías, según la especialidad. El cuestionario o la planilla de cada especialidad (punto 3) precisan cuáles corresponden en cada caso.</p>
-      </div>
-    </section>
+    <!-- Script de búsqueda interactiva -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const sectionsContainer = document.getElementById('sectionsContainer');
+        const sections = sectionsContainer.querySelectorAll('.section-block');
+        const noResults = document.getElementById('noResults');
 
-    <section class="chapter" id="s6">
-      <div class="chapter-head"><div class="num">6</div><h2>La Junta Evaluadora Interdisciplinaria</h2></div>
-      <div class="chapter-body">
-        <p>El turno con la Junta no se saca directamente: se otorga recién cuando la carpeta con toda la documentación está completa y fue revisada.</p>
-        <ul>
-          <li>Por TAD: se carga la documentación escaneada y, una vez que el organismo la revisa y da por aprobado el ingreso, llega por correo la notificación con el día y horario del turno.</li>
-          <li>Presencial: el operador social de la Sede de Atención Social revisa que la carpeta esté completa y ahí mismo asigna el turno.</li>
-        </ul>
-        <p>El día del turno, el solicitante concurre con toda la documentación original al centro evaluador para ser entrevistado por el equipo médico interdisciplinario. Aprobada la evaluación, se emite el CUD definitivo, disponible también en formato digital en la aplicación oficial Mi Argentina.</p>
-      </div>
-    </section>
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            let totalVisibleCards = 0;
 
-    <section class="chapter" id="s7">
-      <div class="chapter-head"><div class="num">7</div><h2>Puntos de contacto</h2></div>
-      <div class="chapter-body">
-        <div class="channels">
-          <div class="channel-card">
-            <div class="ch-title">CUD online</div>
-            <p class="ch-detail">consultascudonline@buenosaires.gob.ar</p>
-          </div>
-          <div class="channel-card">
-            <div class="ch-title">Línea 147</div>
-            <p class="ch-detail">Consultas generales de trámites de la Ciudad, incluido reenvío de turnos si no llegan los mails.</p>
-          </div>
-          <div class="channel-card">
-            <div class="ch-title">Chat BA 147</div>
-            <p class="ch-detail">Lunes a viernes de 7.30 a 24 h, sábados, domingos y feriados de 8.30 a 14.30 h.</p>
-          </div>
-          <div class="channel-card">
-            <div class="ch-title">WhatsApp Boti</div>
-            <p class="ch-detail">11 5050 0147</p>
-          </div>
-        </div>
-      </div>
-    </section>
+            sections.forEach(section => {
+                const cards = section.querySelectorAll('.card');
+                let sectionHasVisibleCard = false;
 
-    <section class="chapter" id="s8">
-      <div class="chapter-head"><div class="num">8</div><h2>Enlaces oficiales</h2></div>
-      <div class="chapter-body">
-        <div class="link-row">
-          <a class="official-link" href="https://www.argentina.gob.ar/cud/consulta-de-requisitos-para-tramitar-el-cud" target="_blank" rel="noopener">Cuestionario de requisitos <span class="arrow">→</span></a>
-          <a class="official-link" href="https://buenosaires.gob.ar/tramites/solicitud-del-certificado-unico-de-discapacidad-cud" target="_blank" rel="noopener">Planillas por especialidad y requisitos <span class="arrow">→</span></a>
-          <a class="official-link" href="https://buenosaires.gob.ar/sites/default/files/2026-05/Planilla%20de%20resumen%20de%20historia%20cl%C3%ADnica%20para%20el%20CUD_GCABA_0.pdf" target="_blank" rel="noopener">Planilla de resumen de historia clínica <span class="arrow">→</span></a>
-          <a class="official-link" href="https://www.argentina.gob.ar/cud" target="_blank" rel="noopener">Cómo obtener el CUD <span class="arrow">→</span></a>
-          <a class="official-link" href="https://tad.buenosaires.gob.ar" target="_blank" rel="noopener">Trámites a Distancia (TAD) <span class="arrow">→</span></a>
-          <a class="official-link" href="https://buenosaires.gob.ar/comunas" target="_blank" rel="noopener">Comunas de la Ciudad <span class="arrow">→</span></a>
-          <a class="official-link" href="https://mi.argentina.gob.ar" target="_blank" rel="noopener">Mi Argentina <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </section>
+                cards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const desc = card.querySelector('p').textContent.toLowerCase();
+                    const keywords = card.getAttribute('data-keywords') || '';
 
-  </main>
+                    if (title.includes(term) || desc.includes(term) || keywords.includes(term)) {
+                        card.style.display = 'flex';
+                        sectionHasVisibleCard = true;
+                        totalVisibleCards++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
 
-  <footer>
-    Guía elaborada a partir de fuentes oficiales de la Ciudad de Buenos Aires y de Argentina.gob.ar. Los requisitos pueden actualizarse; ante cualquier duda puntual, conviene confirmar con el cuestionario oficial o la línea 147.
-  </footer>
+                // Ocultar la sección entera si ninguna tarjeta coincide
+                if (sectionHasVisibleCard) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
 
-</div>
+            if (totalVisibleCards === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
