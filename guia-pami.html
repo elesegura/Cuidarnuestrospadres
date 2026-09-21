@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía PAMI para familias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3EEE2;
+    --bg-raised: #FFFFFF;
+    --ink: #241E1A;
+    --ink-soft: #5E5147;
+    --line: #DECFB8;
+    --teal: #8E3A46;
+    --teal-deep: #6B2530;
+    --teal-tint: #F1E2E4;
+    --ochre: #B8862E;
+    --ochre-tint: #F6EAD2;
+    --rust: #B1481F;
+    --rust-tint: #F7E1D3;
+    --card-shadow: 0 1px 0 rgba(36,30,26,0.07);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+  }
+  a { color: var(--teal-deep); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== Top bar ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .brand span { color: var(--teal); }
+  .call-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--teal-deep);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .call-chip:hover { text-decoration: underline; }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow {
+    color: var(--teal-deep);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+    line-height: 1.08;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  .hero p.lede {
+    max-width: 60ch;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 13px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  /* ===== Layout ===== */
+  .layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 56px;
+    padding: 44px 0 80px;
+    align-items: start;
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 74px;
+    align-self: start;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--line);
+  }
+  nav.toc li { margin: 0; }
+  nav.toc a {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding: 9px 0 9px 16px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: 0.94rem;
+    transition: color .15s, border-color .15s;
+  }
+  nav.toc a .num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    opacity: .7;
+  }
+  nav.toc a.active {
+    color: var(--teal-deep);
+    border-left-color: var(--teal);
+    font-weight: 600;
+  }
+  nav.toc a.active .num { color: var(--teal); opacity: 1; }
+  nav.toc a:hover { color: var(--teal-deep); }
+
+  main { min-width: 0; }
+
+  section.chapter {
+    padding: 8px 0 56px;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 90px;
+  }
+  section.chapter:last-of-type { border-bottom: none; }
+
+  .chapter-head {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .chapter-head .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  .chapter-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .badge-review {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--rust);
+    background: var(--rust-tint);
+    border-radius: 100px;
+    padding: 3px 10px;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .chapter-body { padding-left: 50px; }
+  .chapter-body > p { max-width: 68ch; }
+  .chapter-body h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 30px 0 10px;
+  }
+  .chapter-body ul, .chapter-body ol {
+    max-width: 68ch;
+    padding-left: 22px;
+  }
+  .chapter-body li { margin-bottom: 4px; }
+
+  .official-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid var(--teal);
+    color: var(--teal-deep);
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 7px 15px 7px 15px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 4px 8px 4px 0;
+  }
+  .official-link:hover { background: var(--teal-tint); }
+  .official-link .arrow { transition: transform .15s; }
+  .official-link:hover .arrow { transform: translateX(2px); }
+
+  .link-row { margin: 14px 0 6px; }
+
+  /* expert question card */
+  .expert-q {
+    background: var(--ochre-tint);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    max-width: 68ch;
+    position: relative;
+  }
+  .expert-q .eq-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ochre);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+  }
+  .expert-q .eq-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-transform: none;
+    letter-spacing: 0;
+    background: var(--bg-raised);
+    padding: 2px 9px;
+    border-radius: 100px;
+  }
+  .expert-q p { margin: 0; color: var(--ink); }
+
+  /* alert box */
+  .alert {
+    border: 1px solid var(--rust);
+    background: var(--rust-tint);
+    border-radius: 10px;
+    padding: 18px 20px;
+    max-width: 68ch;
+    margin: 20px 0;
+  }
+  .alert .alert-label {
+    font-weight: 700;
+    color: var(--rust);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+  .alert p { margin: 0; }
+
+  /* info box (channels) */
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    max-width: 78ch;
+    margin: 18px 0;
+  }
+  .channel-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: var(--card-shadow);
+  }
+  .channel-card .ch-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .channel-card .ch-detail {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin-bottom: 10px;
+  }
+
+  /* checklist (section 1) */
+  .checklist {
+    max-width: 68ch;
+    margin: 18px 0 6px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .checklist label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    font-size: 0.97rem;
+  }
+  .checklist label:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--teal);
+    flex: none;
+  }
+  .checklist-note {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  /* elements grid */
+  .elements-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    max-width: 72ch;
+    margin: 16px 0;
+  }
+  .elements-grid span {
+    background: var(--teal-tint);
+    color: var(--teal-deep);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .plain-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--teal-deep);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .plain-link:hover { text-decoration: underline; }
+
+  /* prepaga table */
+  .compare-table {
+    max-width: 78ch;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 18px 0;
+  }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row.head {
+    background: var(--teal-tint);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--teal-deep);
+  }
+  .compare-row > div {
+    padding: 11px 14px;
+    font-size: 0.92rem;
+  }
+  .compare-row .rubro { font-weight: 600; }
+  .opt-btn {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    border-radius: 7px;
+    padding: 6px 4px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .opt-btn.selected {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #FDFDF8;
+    font-weight: 600;
+  }
+  .compare-caption {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin-top: 10px;
+  }
+
+  .principle-box {
+    background: var(--teal-tint);
+    border-radius: 10px;
+    padding: 18px 20px;
+    max-width: 68ch;
+    margin: 20px 0;
+  }
+  .principle-box .pb-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 6px;
+  }
+  .principle-box p { margin: 0; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 0 50px;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 880px) {
+    .layout { grid-template-columns: 1fr; gap: 0; padding-top: 20px; }
+    nav.toc {
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      padding: 10px 24px 30px;
+      overflow-y: auto;
+      transform: translateY(-110%);
+      transition: transform .2s ease;
+      z-index: 30;
+    }
+    nav.toc.open { transform: translateY(0); }
+    .menu-btn { display: inline-block; }
+    .call-chip span.long { display: none; }
+    .chapter-body { padding-left: 0; margin-left: 0; }
+    .chapter-head .num { width: 30px; height: 30px; min-width: 30px; }
+    .compare-row { grid-template-columns: 1.3fr repeat(3, 1fr); }
+    .compare-row > div { padding: 9px 6px; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Guía PAMI <span>para familias</span></div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a class="call-chip" href="tel:138">📞 <span class="long">PAMI Escucha y Responde ·</span> 138</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir índice">Índice</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <section class="hero">
+    <div class="hero-eyebrow">Cuidar a Nuestros Padres</div>
+    <h1>Una guía para no perderse en PAMI</h1>
+    <p class="lede">Un mapa de las prestaciones, trámites y canales de PAMI para cuando empieza a hacer falta más ayuda con un familiar mayor. Pensada para ir directo a lo que necesitás, con los enlaces oficiales a mano.</p>
+    <div class="hero-meta">
+      <span class="tag">📋 Guía viva, se va completando</span>
+      <span class="tag">🗣️ Con preguntas abiertas para expertos</span>
+      <span class="tag">🔗 Enlaces directos a pami.org.ar</span>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" id="tocNav">
+      <ol>
+        <li><a href="#s1"><span class="num">01</span> El médico de cabecera</a></li>
+        <li><a href="#s2"><span class="num">02</span> Identificar qué tipo de ayuda hace falta</a></li>
+        <li><a href="#s3"><span class="num">03</span> Pérdida de autonomía</a></li>
+        <li><a href="#s4"><span class="num">04</span> Elementos de apoyo</a></li>
+        <li><a href="#s5"><span class="num">05</span> Medicamentos</a></li>
+        <li><a href="#s6"><span class="num">06</span> Datos de contacto y ayuda</a></li>
+        <li><a href="#s7"><span class="num">07</span> Si PAMI no responde</a></li>
+        <li><a href="#s8"><span class="num">08</span> PAMI + prepaga</a></li>
+      </ol>
+    </nav>
+
+    <main>
+
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><div class="num">1</div><h2>El médico de cabecera, la puerta de entrada</h2></div>
+        <div class="chapter-body">
+          <p>Antes de cualquier otro trámite, hace falta tener un médico de cabecera asignado. Es el profesional que atiende al afiliado de forma habitual, hace el seguimiento de su salud, deriva a especialistas cuando corresponde y prescribe los estudios y medicamentos. Sin un médico de cabecera asignado, no se pueden iniciar la mayoría de los demás trámites de PAMI: es literalmente el primer paso.</p>
+
+          <h3>¿Cómo se asigna la primera vez?</h3>
+          <p>Al afiliarse a PAMI por primera vez, la persona puede elegir entre varias opciones de médico de cabecera según la disponibilidad de la zona. Si no lo hace, PAMI le asigna uno de manera automática. El trámite se hace por internet, desde la web de PAMI o la app Mi PAMI, o de forma presencial en la agencia correspondiente sacando turno previo.</p>
+
+          <h3>¿Cómo se cambia si ya tiene uno asignado?</h3>
+          <p>El cambio de médico de cabecera puede pedirlo la persona afiliada, su apoderado o un familiar, presentando el DNI con domicilio actualizado (y, si lo hace un tercero, su propio DNI más una autorización firmada). Es un trámite gratuito, se puede iniciar online o presencialmente en la agencia. Un dato práctico: si el cambio se pide entre el día 1 y el 20 del mes, se hace efectivo desde el primer día del mes siguiente; si se pide entre el 21 y el 30, recién impacta un mes después.</p>
+
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/cambio-medico" target="_blank" rel="noopener">Asignar o cambiar médico de cabecera <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/listado-mdc" target="_blank" rel="noopener">Buscar médicos disponibles en tu zona <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">Para completar con la experiencia del grupo <span class="eq-status">Aún sin responder</span></div>
+            <p>Qué hacer cuando en la zona no hay cupo disponible con ningún médico de cabecera, o cuando el asignado automáticamente no atiende bien.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><div class="num">2</div><h2>Para empezar: identificar qué tipo de ayuda hace falta</h2></div>
+        <div class="chapter-body">
+          <p>Si tu familiar tiene PAMI y empieza a necesitar más ayuda para desenvolverse en la vida cotidiana, el primer paso es identificar qué necesita y qué prestación corresponde. PAMI tiene un buscador de trámites donde se pueden consultar prestaciones de salud, medicamentos, servicios sociales, insumos y elementos de apoyo: entre ellos, subsidio para auxiliar domiciliario, centros de día, residencias, internación domiciliaria, rehabilitación, pañales, sillas de ruedas, camas ortopédicas, andadores, audífonos y anteojos.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscador de trámites de PAMI <span class="arrow">→</span></a>
+          </div>
+          <h3>Antes de iniciar un trámite, conviene preguntarse</h3>
+          <div class="checklist" id="checklist1">
+            <label><input type="checkbox" data-key="c1"> ¿Qué dificultad tiene actualmente la persona?</label>
+            <label><input type="checkbox" data-key="c2"> ¿Necesita ayuda para las actividades de la vida diaria?</label>
+            <label><input type="checkbox" data-key="c3"> ¿Puede seguir viviendo sola?</label>
+            <label><input type="checkbox" data-key="c4"> ¿Necesita ayuda algunas horas o una atención más permanente?</label>
+            <label><input type="checkbox" data-key="c5"> ¿Necesita rehabilitación?</label>
+            <label><input type="checkbox" data-key="c6"> ¿Necesita algún elemento de apoyo?</label>
+            <label><input type="checkbox" data-key="c7"> ¿Necesita medicamentos o insumos?</label>
+            <label><input type="checkbox" data-key="c8"> ¿Tiene una red familiar que pueda ayudarla?</label>
+            <label><input type="checkbox" data-key="c9"> ¿La situación es nueva o viene aumentando progresivamente?</label>
+          </div>
+          <p class="checklist-note">Marcalas a medida que las vas pensando. Quedan guardadas en este dispositivo para cuando vuelvas a la guía. No todas las necesidades se resuelven de la misma manera, y tener esto claro ayuda a elegir el trámite correcto desde el principio.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><div class="num">3</div><h2>Pérdida de autonomía: horas de ayuda o vivir acompañada/o</h2></div>
+        <div class="chapter-body">
+          <p>PAMI cuenta con prestaciones específicas para situaciones de dependencia y fragilidad.</p>
+
+          <h3>Auxiliar domiciliario</h3>
+          <p>Subsidio económico parcial para afrontar la dependencia funcional, cuando la persona tiene limitaciones funcionales psicofísicas y no cuenta con una adecuada red de apoyo y atención efectiva. La solicitud puede hacerla la persona afiliada, su apoderado o un familiar. Se requiere, entre otras cosas, informe médico y consentimiento informado, y la prestación queda sujeta a una evaluación social de la situación de dependencia y de la capacidad del entorno familiar para brindar ayuda.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscar "auxiliar domiciliario" en Trámites Web <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Pregunta abierta para expertos <span class="eq-status">Aún sin responder</span></div>
+            <p>En la práctica, ¿cuándo consideran que una familia debería empezar a consultar por este subsidio, y qué suele ocurrir durante la evaluación?</p>
+          </div>
+
+          <h3>Centro de día</h3>
+          <p>Para personas de 60 años o más que pueden ser autoválidas, frágiles o presentar dependencia leve o moderada para las actividades de la vida diaria. También existe una modalidad especializada para personas con deterioro cognitivo o demencias leves o moderadas.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscar "centro de día" en Trámites Web <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Pregunta abierta para expertos <span class="eq-status">Aún sin responder</span></div>
+            <p>¿En qué momento una familia debería pensar en un centro de día? ¿Qué señales indican que puede ser una alternativa adecuada?</p>
+          </div>
+
+          <h3>Residencias de larga estadía</h3>
+          <p>Para personas mayores que requieren apoyo y cuidados en las actividades básicas de la vida diaria y no pueden realizarlas adecuadamente en su entorno. La admisión está sujeta a una evaluación sociosanitaria: no es una prestación automática para cualquier afiliado que la solicite.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscar "residencias" en Trámites Web <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Tema pendiente de desarrollar <span class="eq-status">En preparación</span></div>
+            <p>Merece su propia sección aparte, porque es una de las preguntas que más aparece en el grupo: "Mi familiar ya no puede vivir sola, ¿qué alternativas tengo?"</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><div class="num">4</div><h2>Elementos que puede necesitar una persona con mayor dependencia</h2></div>
+        <div class="chapter-body">
+          <p>Dentro de los trámites de PAMI aparecen distintos elementos de ayuda técnica:</p>
+          <div class="elements-grid">
+            <span>Silla de ruedas</span><span>Cama ortopédica</span><span>Andador</span><span>Bastón</span><span>Muletas</span><span>Accesorios</span><span>Pañales</span><span>Oxigenoterapia</span><span>Audífonos</span><span>Anteojos</span><span>Elementos de ostomía</span>
+          </div>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Trámites e insumos de PAMI <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/ostomia" target="_blank" rel="noopener">Ostomía <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/higienicos" target="_blank" rel="noopener">Pañales <span class="arrow">→</span></a>
+          </div>
+          <p>Para una silla de ruedas, por ejemplo, PAMI indica que puede iniciar el trámite el afiliado, apoderado, familiar o incluso el médico mediante la Orden Médica Electrónica, cuando está habilitado.</p>
+
+          <div class="principle-box">
+            <div class="pb-label">Un caso que merece destacarse: pañales</div>
+            <p>Los pañales y apósitos se entregan directamente en el domicilio declarado, sin costo para el afiliado. Desde el 1 de marzo de 2026, las nuevas Órdenes Médicas Electrónicas tienen una vigencia de 90 días y deben renovarse para mantener la provisión.</p>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Para completar con la experiencia del grupo <span class="eq-status">Aún sin responder</span></div>
+            <p>La norma puede ser clara, pero la familia necesita saber qué hacer cuando la entrega no llega, llega incompleta o cambia la necesidad.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><div class="num">5</div><h2>Medicamentos</h2></div>
+        <div class="chapter-body">
+          <p>PAMI tiene distintos mecanismos de cobertura de medicamentos. Entre ellos, un subsidio social con cobertura del 100% para afiliados que no pueden afrontar el costo de sus medicamentos. La solicitud varía según la cantidad de medicamentos: hasta 4, hasta 6 o más de 6, con distintos niveles de evaluación. También existen coberturas específicas para medicamentos asociados a discapacidad.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/medicamentos" target="_blank" rel="noopener">Medicamentos PAMI <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Pregunta central de esta sección <span class="eq-status">Aún sin responder</span></div>
+            <p>Mi familiar toma muchos medicamentos y no puede pagarlos, ¿qué puede pedir a PAMI?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><div class="num">6</div><h2>Datos de contacto y ayuda</h2></div>
+        <div class="chapter-body">
+          <div class="channels">
+            <div class="channel-card">
+              <div class="ch-title">📞 PAMI Escucha y Responde</div>
+              <div class="ch-detail">Línea 138, gratuita, las 24 horas, los 365 días del año. Consultas, sugerencias y reclamos.</div>
+              <a class="plain-link" href="tel:138">📞 Llamar al 138 <span class="arrow">→</span></a>
+            </div>
+            <div class="channel-card">
+              <div class="ch-title">🏢 Agencia o UGL</div>
+              <div class="ch-detail">Más de 600 agencias y 38 UGL en todo el país.</div>
+              <a class="official-link" href="https://www.pami.org.ar/agencias-ugls" target="_blank" rel="noopener">Buscar agencia <span class="arrow">→</span></a>
+            </div>
+            <div class="channel-card">
+              <div class="ch-title">💻 Mi PAMI</div>
+              <div class="ch-detail">Para realizar y consultar distintos trámites y datos de la persona afiliada.</div>
+              <a class="official-link" href="https://www.pami.org.ar/mipami" target="_blank" rel="noopener">Ir a Mi PAMI <span class="arrow">→</span></a>
+            </div>
+            <div class="channel-card">
+              <div class="ch-title">🌐 Sitio oficial</div>
+              <div class="ch-detail">pami.org.ar, el punto de partida para cualquier trámite.</div>
+              <a class="official-link" href="https://www.pami.org.ar/" target="_blank" rel="noopener">pami.org.ar <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+          <div class="alert">
+            <div class="alert-label">⚠️ Atención con las estafas</div>
+            <p>PAME, el bot de WhatsApp de PAMI, está fuera de servicio desde el 1 de enero de 2026, mientras PAMI trabaja en una nueva versión. PAMI indica que no debe responderse a supuestos mensajes de PAMI por WhatsApp, y recomienda usar únicamente los canales oficiales de esta sección.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><div class="num">7</div><h2>Si PAMI no responde o rechaza una prestación</h2></div>
+        <div class="chapter-body">
+          <p>PAMI dispone de un sistema específico para reclamos sobre prestaciones, servicios, medicamentos, insumos, servicios sociales y otras situaciones.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/reclamos" target="_blank" rel="noopener">Iniciar un reclamo <span class="arrow">→</span></a>
+          </div>
+          <div class="principle-box">
+            <div class="pb-label">Principio general de esta guía</div>
+            <p>No quedarse solamente con una respuesta verbal. Cuando sea necesario, dejar registrado el pedido o reclamo, y conservar el número de trámite.</p>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Para completar con expertos <span class="eq-status">Aún sin responder</span></div>
+            <p>Cómo funciona realmente ese circuito, de principio a fin.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><div class="num">8</div><h2>PAMI + prepaga <span class="badge-review">En revisión</span></h2></div>
+        <div class="chapter-body">
+          <p>Esta sección todavía no está escrita como definitiva. Falta investigar la normativa actual, porque acá es donde más fácil se transmite algo incorrecto. La pregunta central es: tengo PAMI y además una prepaga, ¿qué puedo utilizar de cada una?</p>
+          <div class="compare-table" id="compareTable">
+            <div class="compare-row head">
+              <div>Rubro</div><div>PAMI</div><div>Prepaga</div><div>Depende</div>
+            </div>
+          </div>
+          <p class="compare-caption">Marcá lo que sepas por experiencia propia mientras terminamos de verificar cada fila con los expertos del grupo. Esto todavía no es información confirmada, es un punto de partida para la investigación.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="shell">
+    Guía elaborada para la comunidad Cuidar a Nuestros Padres, a partir de información pública de PAMI. Se irá actualizando a medida que se sume la experiencia de las familias y de los expertos consultados. Ante cualquier duda puntual sobre un caso, el canal oficial es la línea 138.
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const tocNav = document.getElementById('tocNav');
+  menuBtn.addEventListener('click', () => {
+    tocNav.classList.toggle('open');
+    menuBtn.textContent = tocNav.classList.contains('open') ? 'Cerrar' : 'Índice';
+  });
+  tocNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    tocNav.classList.remove('open');
+    menuBtn.textContent = 'Índice';
+  }));
+
+  // active section highlight
+  const links = Array.from(document.querySelectorAll('nav.toc a'));
+  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const idx = sections.indexOf(entry.target);
+      if (idx === -1) return;
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        links[idx].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  sections.forEach(s => s && observer.observe(s));
+
+  // checklist persistence (per-viewer convenience only)
+  try {
+    const saved = JSON.parse(localStorage.getItem('guiaPami_checklist') || '{}');
+    document.querySelectorAll('#checklist1 input[type="checkbox"]').forEach(cb => {
+      const key = cb.dataset.key;
+      if (saved[key]) cb.checked = true;
+      cb.addEventListener('change', () => {
+        const state = JSON.parse(localStorage.getItem('guiaPami_checklist') || '{}');
+        state[key] = cb.checked;
+        try { localStorage.setItem('guiaPami_checklist', JSON.stringify(state)); } catch (e) {}
+      });
+    });
+  } catch (e) {}
+
+  // PAMI vs prepaga comparison table
+  const rubros = [
+    'Medicamentos', 'Insumos', 'Elementos de apoyo', 'Rehabilitación',
+    'Atención domiciliaria', 'Centros de día', 'Residencias', 'Internación',
+    'Prestaciones especiales', 'Discapacidad', 'Reclamos'
+  ];
+  const options = ['PAMI', 'Prepaga', 'Ambas'];
+  const table = document.getElementById('compareTable');
+  let compareState = {};
+  try { compareState = JSON.parse(localStorage.getItem('guiaPami_compare') || '{}'); } catch (e) {}
+
+  rubros.forEach((rubro, i) => {
+    const row = document.createElement('div');
+    row.className = 'compare-row';
+    const label = document.createElement('div');
+    label.className = 'rubro';
+    label.textContent = rubro;
+    row.appendChild(label);
+    options.forEach(opt => {
+      const cell = document.createElement('div');
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn';
+      btn.textContent = opt;
+      btn.type = 'button';
+      if (compareState[rubro] === opt) btn.classList.add('selected');
+      btn.addEventListener('click', () => {
+        row.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        compareState[rubro] = opt;
+        try { localStorage.setItem('guiaPami_compare', JSON.stringify(compareState)); } catch (e) {}
+      });
+      cell.appendChild(btn);
+      row.appendChild(cell);
+    });
+    table.appendChild(row);
+  });
+</script>
+
+</body>
+</html>
