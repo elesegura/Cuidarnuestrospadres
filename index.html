@@ -2,25 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Cuidar a nuestros padres - Portal de Recursos</title>
-    <!-- Google Fonts & FontAwesome para iconos -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Fraunces y Work Sans (mismas fuentes de la guía) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #2C5282;
-            --primary-light: #EBF8FF;
-            --accent: #319795;
-            --text-main: #2D3748;
-            --text-muted: #718096;
-            --bg-color: #F7FAFC;
-            --card-bg: #FFFFFF;
-            --border-color: #E2E8F0;
-            --radius: 16px;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg: #F3EEE2;
+            --bg-raised: #FFFFFF;
+            --ink: #241E1A;
+            --ink-soft: #5E5147;
+            --line: #DECFB8;
+            --teal: #8E3A46;
+            --teal-deep: #6B2530;
+            --teal-tint: #F1E2E4;
+            --ochre: #B8862E;
+            --ochre-tint: #F6EAD2;
+            --card-shadow: 0 1px 0 rgba(36,30,26,0.07);
+            color-scheme: light;
         }
 
         * {
@@ -29,234 +32,246 @@
             padding: 0;
         }
 
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: env(safe-area-inset-top, 0px); 
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Work Sans', system-ui, sans-serif;
+            font-size: 16.5px;
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
         }
 
-        /* Header Minimalista */
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.5rem 2rem;
-            text-align: center;
-        }
+        a { color: var(--teal-deep); text-decoration: none; }
 
-        .header-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        header h1 {
-            font-size: 1.75rem;
-            color: var(--primary);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 0.4rem;
-        }
-
-        /* Main Content */
-        main {
-            flex: 1;
-            max-width: 900px;
+        .shell { 
+            max-width: 820px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
             width: 100%;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Buscador */
+        /* ===== Hero ===== */
+        .hero { 
+            padding: 48px 0 32px; 
+            border-bottom: 1px solid var(--line); 
+        }
+        .hero-eyebrow { 
+            color: var(--teal-deep); 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            margin-bottom: 10px; 
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+            line-height: 1.1;
+            margin: 0 0 14px;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+        .hero p.lede { 
+            max-width: 62ch; 
+            font-size: 1.06rem; 
+            color: var(--ink-soft); 
+            margin: 0; 
+        }
+
+        /* Buscador integrado */
         .search-container {
             position: relative;
-            margin-bottom: 2.5rem;
+            margin: 32px 0 12px;
+            max-width: 100%;
         }
 
         .search-container i {
             position: absolute;
-            left: 1.25rem;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: var(--ink-soft);
         }
 
         .search-input {
             width: 100%;
-            padding: 1rem 1rem 1rem 3.2rem;
-            font-size: 1rem;
+            padding: 14px 16px 14px 44px;
+            font-size: 0.95rem;
             font-family: inherit;
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius);
-            background-color: var(--card-bg);
-            transition: var(--transition);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background-color: var(--bg-raised);
+            color: var(--ink);
+            transition: all 0.2s ease;
             outline: none;
+            box-shadow: var(--card-shadow);
         }
 
         .search-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--primary-light);
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px var(--teal-tint);
         }
 
-        /* Secciones y Tarjetas */
-        .section-block {
-            margin-bottom: 2.5rem;
+        /* Secciones y Contenido Principal */
+        main { 
+            padding: 24px 0 60px; 
+            flex: 1;
         }
 
-        .section-title {
-            font-size: 1.2rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 2px solid var(--primary-light);
-            padding-bottom: 0.4rem;
+        section.chapter { 
+            padding: 24px 0 32px; 
+            border-bottom: 1px solid var(--line); 
+        }
+        section.chapter:last-of-type { border-bottom: none; }
+
+        .chapter-head { 
+            display: flex; 
+            gap: 16px; 
+            align-items: center; 
+            margin-bottom: 16px; 
+        }
+        .chapter-head h2 { 
+            font-family: 'Fraunces', serif; 
+            font-weight: 500; 
+            font-size: 1.35rem; 
+            margin: 0; 
+            letter-spacing: -0.01em; 
+            color: var(--teal-deep);
+        }
+        .chapter-head i {
+            font-size: 1.1rem;
+            color: var(--teal);
         }
 
+        /* Tarjetas estilo editorial */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
+            gap: 16px;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            background-color: var(--bg-raised);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--primary);
-            opacity: 0;
-            transition: var(--transition);
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px -5px rgba(44, 82, 130, 0.15);
-        }
-
-        .card:hover::before {
-            opacity: 1;
+            border-color: var(--teal);
+            transform: translateY(-2px);
+            background: #FFFEFC;
         }
 
         .card-content h3 {
+            font-family: 'Fraunces', serif;
             font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .card-content p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+            margin-bottom: 16px;
         }
 
         .card-footer {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            font-size: 0.85rem;
+            justify-content: space-between;
+            font-size: 0.88rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--teal-deep);
+            border-top: 1px solid var(--line);
+            padding-top: 12px;
         }
 
         .card-footer i {
-            margin-left: 0.4rem;
-            transition: transform 0.2s ease;
+            transition: transform 0.15s ease;
         }
 
         .card:hover .card-footer i {
-            transform: translateX(4px);
-        }
-
-        /* Footer general */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            background-color: var(--card-bg);
+            transform: translateX(3px);
         }
 
         /* Mensaje sin resultados */
         .no-results {
             text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
+            padding: 3rem 1rem;
+            color: var(--ink-soft);
             display: none;
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
         }
 
-        @media (max-width: 600px) {
-            main {
-                padding: 1.5rem 1rem;
-            }
+        /* Footer */
+        footer { 
+            border-top: 1px solid var(--line); 
+            padding: 26px 0 40px; 
+            color: var(--ink-soft); 
+            font-size: 0.86rem; 
+        }
+
+        @media (max-width: 640px) {
+            .shell { padding: 0 16px; }
+            .hero { padding: 36px 0 24px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <h1><i class="fa-solid fa-hands-holding-child"></i> Cuidar a nuestros padres</h1>
-            <p>Guía de recursos y trámites esenciales para la organización familiar</p>
-        </div>
-    </header>
+<div class="shell">
 
-    <main>
+    <section class="hero">
+        <div class="hero-eyebrow">Cuidar a nuestros padres</div>
+        <h1>Portal de Recursos y Trámites</h1>
+        <p class="lede">Guía centralizada para organizar la previsión, el acceso a derechos y el marco laboral de acompañamiento familiar.</p>
+        
         <!-- Buscador en tiempo real -->
         <div class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" id="searchInput" class="search-input" placeholder="Buscar guía, trámite o sección...">
         </div>
+    </section>
 
+    <main>
         <div id="noResults" class="no-results">
-            <i class="fa-solid fa-face-sad-tear" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
             <p>No se encontraron resultados para tu búsqueda.</p>
         </div>
 
         <div id="sectionsContainer">
             
             <!-- 1. PREPARARSE (Primero) -->
-            <section class="section-block" data-section="prepararse">
-                <h2 class="section-title"><i class="fa-solid fa-compass"></i> Prepararse</h2>
+            <section class="chapter" data-section="prepararse">
+                <div class="chapter-head">
+                    <i class="fa-solid fa-compass"></i>
+                    <h2>Prepararse</h2>
+                </div>
                 <div class="cards-grid">
-                    <!-- Nota: Puedes crear y enlazar tu archivo aquí, ej: prepararse.html -->
                     <a href="prepararse.html" class="card" data-keywords="urgencia antes anticipar documentacion botiquin guia">
                         <div class="card-content">
                             <h3>Guía de Anticipación</h3>
-                            <p>Información útil para organizar datos médicos, contactos y pautas antes de una urgencia.</p>
+                            <p>Información útil para organizar datos médicos, contactos y pautas clave antes de que surja una urgencia.</p>
                         </div>
                         <div class="card-footer">
                             <span>Ver guía</span> <i class="fa-solid fa-arrow-right"></i>
@@ -266,13 +281,16 @@
             </section>
 
             <!-- 2. CUD -->
-            <section class="section-block" data-section="cud">
-                <h2 class="section-title"><i class="fa-solid fa-id-card"></i> Certificado Único de Discapacidad (CUD)</h2>
+            <section class="chapter" data-section="cud">
+                <div class="chapter-head">
+                    <i class="fa-solid fa-id-card"></i>
+                    <h2>Certificado Único de Discapacidad (CUD)</h2>
+                </div>
                 <div class="cards-grid">
                     <a href="CUD-Caba.html" class="card" data-keywords="cud caba capital federal discapacidad tramite requisitos">
                         <div class="card-content">
                             <h3>Tramitar el CUD en CABA</h3>
-                            <p>Paso a paso, documentación necesaria y centros de atención en la Ciudad Autónoma de Buenos Aires.</p>
+                            <p>Paso a paso, documentación necesaria, planillas por especialidad y puntos de atención en la Ciudad.</p>
                         </div>
                         <div class="card-footer">
                             <span>Ver trámite</span> <i class="fa-solid fa-arrow-right"></i>
@@ -292,8 +310,11 @@
             </section>
 
             <!-- 3. CONTRATACIÓN Y MARCO LABORAL -->
-            <section class="section-block" data-section="contratacion">
-                <h2 class="section-title"><i class="fa-solid fa-file-contract"></i> Contratación y Marco Laboral</h2>
+            <section class="chapter" data-section="contratacion">
+                <div class="chapter-head">
+                    <i class="fa-solid fa-file-contract"></i>
+                    <h2>Contratación y Marco Laboral</h2>
+                </div>
                 <div class="cards-grid">
                     <a href="Contratacioncuidadoras.html" class="card" data-keywords="contratacion sueldos calculo reglamento trabajo casas particulares aportes salarios">
                         <div class="card-content">
@@ -311,52 +332,53 @@
     </main>
 
     <footer>
-        <p>Portal de acompañamiento familiar &copy; 2026</p>
+        Portal de acompañamiento familiar &copy; 2026. Diseñado bajo criterios de claridad y acceso rápido.
     </footer>
 
-    <!-- Script de búsqueda interactiva -->
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const sectionsContainer = document.getElementById('sectionsContainer');
-        const sections = sectionsContainer.querySelectorAll('.section-block');
-        const noResults = document.getElementById('noResults');
+</div>
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
-            let totalVisibleCards = 0;
+<!-- Script de búsqueda interactiva -->
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const sectionsContainer = document.getElementById('sectionsContainer');
+    const sections = sectionsContainer.querySelectorAll('.chapter');
+    const noResults = document.getElementById('noResults');
 
-            sections.forEach(section => {
-                const cards = section.querySelectorAll('.card');
-                let sectionHasVisibleCard = false;
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        let totalVisibleCards = 0;
 
-                cards.forEach(card => {
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const desc = card.querySelector('p').textContent.toLowerCase();
-                    const keywords = card.getAttribute('data-keywords') || '';
+        sections.forEach(section => {
+            const cards = section.querySelectorAll('.card');
+            let sectionHasVisibleCard = false;
 
-                    if (title.includes(term) || desc.includes(term) || keywords.includes(term)) {
-                        card.style.display = 'flex';
-                        sectionHasVisibleCard = true;
-                        totalVisibleCards++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                const keywords = card.getAttribute('data-keywords') || '';
 
-                // Ocultar la sección entera si ninguna tarjeta coincide
-                if (sectionHasVisibleCard) {
-                    section.style.display = 'block';
+                if (title.includes(term) || desc.includes(term) || keywords.includes(term)) {
+                    card.style.display = 'flex';
+                    sectionHasVisibleCard = true;
+                    totalVisibleCards++;
                 } else {
-                    section.style.display = 'none';
+                    card.style.display = 'none';
                 }
             });
 
-            if (totalVisibleCards === 0) {
-                noResults.style.display = 'block';
+            if (sectionHasVisibleCard) {
+                section.style.display = 'block';
             } else {
-                noResults.style.display = 'none';
+                section.style.display = 'none';
             }
         });
-    </script>
+
+        if (totalVisibleCards === 0) {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
