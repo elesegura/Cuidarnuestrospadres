@@ -1,0 +1,1051 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía PAMI para familias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3EEE2;
+    --bg-raised: #FFFFFF;
+    --ink: #241E1A;
+    --ink-soft: #5E5147;
+    --line: #DECFB8;
+    --teal: #8E3A46;
+    --teal-deep: #6B2530;
+    --teal-tint: #F1E2E4;
+    --ochre: #B8862E;
+    --ochre-tint: #F6EAD2;
+    --rust: #B1481F;
+    --rust-tint: #F7E1D3;
+    --card-shadow: 0 1px 0 rgba(36,30,26,0.07);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+  }
+  a { color: var(--teal-deep); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== Top bar ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .brand span { color: var(--teal); }
+  .call-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--teal-deep);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .call-chip:hover { text-decoration: underline; }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow {
+    color: var(--teal-deep);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+    line-height: 1.08;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  .hero p.lede {
+    max-width: 60ch;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 13px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  /* ===== Layout ===== */
+  .layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 56px;
+    padding: 44px 0 80px;
+    align-items: start;
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 74px;
+    align-self: start;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--line);
+  }
+  nav.toc li { margin: 0; }
+  nav.toc a {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding: 9px 0 9px 16px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: 0.94rem;
+    transition: color .15s, border-color .15s;
+  }
+  nav.toc a .num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    opacity: .7;
+  }
+  nav.toc a.active {
+    color: var(--teal-deep);
+    border-left-color: var(--teal);
+    font-weight: 600;
+  }
+  nav.toc a.active .num { color: var(--teal); opacity: 1; }
+  nav.toc a:hover { color: var(--teal-deep); }
+
+  main { min-width: 0; }
+
+  section.chapter {
+    padding: 8px 0 56px;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 90px;
+  }
+  section.chapter:last-of-type { border-bottom: none; }
+
+  .chapter-head {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .chapter-head .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  .chapter-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .badge-review {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--rust);
+    background: var(--rust-tint);
+    border-radius: 100px;
+    padding: 3px 10px;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .chapter-body { padding-left: 50px; }
+  .chapter-body > p { max-width: 68ch; }
+  .chapter-body h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 30px 0 10px;
+  }
+  .chapter-body ul, .chapter-body ol {
+    max-width: 68ch;
+    padding-left: 22px;
+  }
+  .chapter-body li { margin-bottom: 4px; }
+
+  .official-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid var(--teal);
+    color: var(--teal-deep);
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 7px 15px 7px 15px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 4px 8px 4px 0;
+  }
+  .official-link:hover { background: var(--teal-tint); }
+  .official-link .arrow { transition: transform .15s; }
+  .official-link:hover .arrow { transform: translateX(2px); }
+
+  .link-row { margin: 14px 0 6px; }
+
+  /* expert question card */
+  .expert-q {
+    background: var(--ochre-tint);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    max-width: 68ch;
+    position: relative;
+  }
+  .expert-q .eq-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ochre);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+  }
+  .expert-q .eq-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-transform: none;
+    letter-spacing: 0;
+    background: var(--bg-raised);
+    padding: 2px 9px;
+    border-radius: 100px;
+  }
+  .expert-q p { margin: 0; color: var(--ink); }
+
+  /* alert box */
+  .alert {
+    border: 1px solid var(--rust);
+    background: var(--rust-tint);
+    border-radius: 10px;
+    padding: 18px 20px;
+    max-width: 68ch;
+    margin: 20px 0;
+  }
+  .alert .alert-label {
+    font-weight: 700;
+    color: var(--rust);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+  .alert p { margin: 0; }
+
+  /* info box (channels) */
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    max-width: 78ch;
+    margin: 18px 0;
+  }
+  .channel-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: var(--card-shadow);
+  }
+  .channel-card .ch-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .channel-card .ch-detail {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin-bottom: 10px;
+  }
+
+  /* checklist (section 1) */
+  .checklist {
+    max-width: 68ch;
+    margin: 18px 0 6px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .checklist label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    font-size: 0.97rem;
+  }
+  .checklist label:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--teal);
+    flex: none;
+  }
+  .checklist-note {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  /* elements grid */
+  .elements-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    max-width: 72ch;
+    margin: 16px 0;
+  }
+  .elements-grid span {
+    background: var(--teal-tint);
+    color: var(--teal-deep);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .plain-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--teal-deep);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .plain-link:hover { text-decoration: underline; }
+
+  /* prepaga table */
+  .compare-table {
+    max-width: 78ch;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 18px 0;
+  }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row.head {
+    background: var(--teal-tint);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--teal-deep);
+  }
+  .compare-row > div {
+    padding: 11px 14px;
+    font-size: 0.92rem;
+  }
+  .compare-row .rubro { font-weight: 600; }
+  .opt-btn {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    border-radius: 7px;
+    padding: 6px 4px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .opt-btn.selected {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #FDFDF8;
+    font-weight: 600;
+  }
+  .compare-caption {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin-top: 10px;
+  }
+
+  .principle-box {
+    background: var(--teal-tint);
+    border-radius: 10px;
+    padding: 18px 20px;
+    max-width: 68ch;
+    margin: 20px 0;
+  }
+  .principle-box .pb-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 6px;
+  }
+  .principle-box p { margin: 0; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 0 50px;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 880px) {
+    .layout { grid-template-columns: 1fr; gap: 0; padding-top: 20px; }
+    nav.toc {
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      padding: 10px 24px 30px;
+      overflow-y: auto;
+      transform: translateY(-110%);
+      transition: transform .2s ease;
+      z-index: 30;
+    }
+    nav.toc.open { transform: translateY(0); }
+    .menu-btn { display: inline-block; }
+    .call-chip span.long { display: none; }
+    .chapter-body { padding-left: 0; margin-left: 0; }
+    .chapter-head .num { width: 30px; height: 30px; min-width: 30px; }
+    .compare-row { grid-template-columns: 1.3fr repeat(3, 1fr); }
+    .compare-row > div { padding: 9px 6px; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Guía PAMI <span>para familias</span></div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a class="call-chip" href="tel:138">📞 <span class="long">PAMI Escucha y Responde ·</span> 138</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir índice">Índice</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <section class="hero">
+    <div class="hero-eyebrow">Cuidar a Nuestros Padres</div>
+    <h1>Una guía para no perderse en PAMI</h1>
+    <p class="lede">Un mapa de las prestaciones, trámites y canales de PAMI para cuando empieza a hacer falta más ayuda con un familiar mayor. Pensada para ir directo a lo que necesitás, con los enlaces oficiales a mano.</p>
+    <div class="hero-meta">
+      <span class="tag">📋 Guía viva, se va completando</span>
+      <span class="tag">🗣️ Con aportes y preguntas abiertas del grupo</span>
+      <span class="tag">🔗 Enlaces directos a pami.org.ar</span>
+    </div>
+  </section>
+
+  <div class="expert-q" style="max-width:none; margin: 28px 0 0;">
+    <div class="eq-label">Recomendación general, en la práctica <span class="eq-status">Aportado por el grupo</span></div>
+    <p>Ir personalmente a la agencia ayuda, aun cuando los trámites se puedan hacer por internet: el hecho de estar en la agencia acorta los tiempos. "Si dejó de cubrir algo, la causa fue por falta de información, de renovación o por falta de carga del personal de PAMI en la agencia, por eso siempre ir personalmente ayuda. En otros casos no tengo experiencia."</p>
+  </div>
+
+  <div class="layout">
+    <nav class="toc" id="tocNav">
+      <ol>
+        <li><a href="#s1"><span class="num">01</span> ¿Qué es PAMI?</a></li>
+        <li><a href="#s2"><span class="num">02</span> ¿Cómo afiliarse a PAMI?</a></li>
+        <li><a href="#s3"><span class="num">03</span> El médico de cabecera</a></li>
+        <li><a href="#s4"><span class="num">04</span> Atención con especialistas</a></li>
+        <li><a href="#s5"><span class="num">05</span> Odontología, laboratorio y salud mental</a></li>
+        <li><a href="#s6"><span class="num">06</span> Identificar qué tipo de ayuda hace falta</a></li>
+        <li><a href="#s7"><span class="num">07</span> Pérdida de autonomía</a></li>
+        <li><a href="#s8"><span class="num">08</span> Elementos de apoyo</a></li>
+        <li><a href="#s9"><span class="num">09</span> Medicamentos</a></li>
+        <li><a href="#s10"><span class="num">10</span> Certificado Único de Discapacidad</a></li>
+        <li><a href="#s11"><span class="num">11</span> Datos de contacto y ayuda</a></li>
+        <li><a href="#s12"><span class="num">12</span> Si PAMI no responde</a></li>
+      </ol>
+    </nav>
+
+    <main>
+
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><div class="num">1</div><h2>¿Qué es PAMI?</h2></div>
+        <div class="chapter-body">
+          <p>PAMI no es una obra social tradicional, sino un instituto estatal de seguridad social de carácter solidario y prestacional, diseñado para jubilados y pensionados. Funciona como un financiador indirecto que no tiene clínicas propias, sino que opera mediante convenios con redes de prestadores y farmacias. Gestiona subsidios, como el de medicamentos o auxiliares domiciliarios.</p>
+          <p>En algunos trámites, la presentación del CUD resulta clave para ampliar los topes económicos (ver sección 10). La situación actual y la masividad de PAMI suele exigir una persistencia constante por parte de las familias en las agencias locales.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><div class="num">2</div><h2>¿Cómo afiliarse a PAMI?</h2></div>
+        <div class="chapter-body">
+          <p>Cobrar una jubilación o pensión con descuento para PAMI no alcanza: para usar las prestaciones hay que hacer el trámite de afiliación. Es el paso previo a todo lo demás, incluido elegir médico de cabecera.</p>
+
+          <h3>¿Quién puede afiliarse?</h3>
+          <p><strong>Como titular:</strong> quien cobra una jubilación o pensión de orden nacional con descuento a favor de PAMI. También pueden afiliarse como titulares, entre otros casos, las personas mayores de 70 años sin beneficio previsional ni cobertura social, y quienes están tramitando su jubilación o pensión en ANSES (con una afiliación provisoria, ver más abajo).</p>
+          <p><strong>Como familiar a cargo:</strong> cónyuge o conviviente, hijos menores de 21 años, hijos estudiantes hasta 25, hijos con discapacidad, padres y abuelos del titular, entre otros vínculos. Los requisitos cambian según el caso.</p>
+          <p>Un dato importante: se puede tener PAMI y una prepaga, pero no PAMI y otra obra social al mismo tiempo.</p>
+
+          <h3>¿Qué documentación hace falta?</h3>
+          <ul>
+            <li>DNI vigente con domicilio actualizado (mayores de 75 años pueden usar Libreta de Enrolamiento o Libreta Cívica).</li>
+            <li>Último recibo de cobro de la jubilación o pensión (la liquidación previsional).</li>
+            <li>Constancia de CUIT o CUIL.</li>
+            <li>CODEM (Código de Empadronamiento), que se obtiene en ANSES (página web Mi ANSES o en forma presencial en agencias de ANSES).</li>
+          </ul>
+
+          <h3>¿Cómo se hace?</h3>
+          <p>Es un trámite web: se entra a la sección "Quiero afiliarme" del sitio de PAMI, se elige "Iniciar este trámite web", se completan los datos y se envía el formulario. Se puede hacer desde el celular, la tablet o la computadora. Lo puede hacer la persona interesada o su apoderado. También se puede hacer en forma presencial en una agencia de PAMI.</p>
+
+          <h3>¿Y si la jubilación todavía está en trámite?</h3>
+          <p>Existe la afiliación provisoria, pensada para quien necesita cobertura mientras ANSES resuelve su jubilación o pensión. Es presencial, en agencia, y se pide con el DNI, el certificado de inicio del beneficio en ANSES (que indique que en principio reúne los requisitos), la constancia negativa de ANSES y la constancia de CUIT/CUIL.</p>
+
+          <h3>Después de afiliarse</h3>
+          <p>El siguiente paso es elegir el médico de cabecera (sección 3). La credencial se puede descargar desde Mi PAMI.</p>
+
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/quieroafiliarme" target="_blank" rel="noopener">Quiero afiliarme <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/afiliacion" target="_blank" rel="noopener">Afiliación titular definitiva: requisitos <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/provisoria" target="_blank" rel="noopener">Afiliación provisoria <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.argentina.gob.ar/afiliarme-al-pami-como-jubilado-o-pensionado-titular" target="_blank" rel="noopener">Guía del trámite en Argentina.gob.ar <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">PAMI, obra social y prepaga <span class="eq-status">Aportado por el grupo</span></div>
+            <p>Consultado con personas que manejan temas previsionales y de salud: no se puede tener PAMI y obra social. Sí se puede tener PAMI y prepaga. Esto surge de la interpretación de estas normas: 1. Ley N.° 19.032 (creación de PAMI). 2. Ley N.° 23.660 (Ley de Obras Sociales) y Ley N.° 23.661 (Sistema Nacional del Seguro de Salud). 3. Decretos N.° 292/95 y N.° 492/95 (Derecho de Opción).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><div class="num">3</div><h2>El médico de cabecera, la puerta de entrada</h2></div>
+        <div class="chapter-body">
+          <p>Una vez afiliado a PAMI y antes de cualquier otro trámite, hace falta tener un médico de cabecera asignado. Es el profesional que atiende al afiliado de forma habitual, hace el seguimiento de su salud, deriva a especialistas cuando corresponde y prescribe los estudios y medicamentos. Sin un médico de cabecera asignado, no se pueden iniciar la mayoría de los demás trámites de PAMI: es literalmente el primer paso.</p>
+
+          <h3>¿Cómo se asigna la primera vez?</h3>
+          <p>Al afiliarse a PAMI por primera vez, la persona puede elegir entre varias opciones de médico de cabecera según la disponibilidad de la zona. Si no lo hace, PAMI le asigna uno de manera automática. El trámite se hace por internet, desde la web de PAMI o la app Mi PAMI, o de forma presencial en la agencia correspondiente sacando turno previo.</p>
+
+          <h3>¿Cómo se cambia si ya tiene uno asignado?</h3>
+          <p>El cambio de médico de cabecera puede pedirlo la persona afiliada, su apoderado o un familiar, presentando el DNI con domicilio actualizado (y, si lo hace un tercero, su propio DNI más una autorización firmada). Es un trámite gratuito, se puede iniciar online o presencialmente en la agencia. Un dato práctico: si el cambio se pide entre el día 1 y el 20 del mes, se hace efectivo desde el primer día del mes siguiente; si se pide entre el 21 y el 30, recién impacta un mes después.</p>
+
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/cambio-medico" target="_blank" rel="noopener">Asignar o cambiar médico de cabecera <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/listado-mdc" target="_blank" rel="noopener">Buscar médicos disponibles en tu zona <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">Para completar con la experiencia del grupo <span class="eq-status">Aún sin responder</span></div>
+            <p>Qué hacer cuando en la zona no hay cupo disponible con ningún médico de cabecera, o cuando el asignado automáticamente no atiende bien.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><div class="num">4</div><h2>Atención con especialistas: la orden del médico de cabecera</h2></div>
+        <div class="chapter-body">
+          <p>Para atenderse con un especialista (cardiología, traumatología, oftalmología, neurología, entre más de 30 especialidades) hace falta una Orden Médica Electrónica (OME). Para la primera consulta, esa orden la confecciona el médico de cabecera: es quien evalúa la necesidad y deriva. Por eso, tener asignado un médico de cabecera es condición para llegar al especialista.</p>
+
+          <h3>Libre elección de especialista</h3>
+          <p>PAMI permite elegir con qué especialista o centro de diagnóstico atenderse entre los que figuran en la cartilla médica, en lugar de tener uno asignado. Las excepciones son odontología, laboratorio y salud mental, donde hay prestadores asignados (en salud mental se puede elegir otro).</p>
+
+          <h3>Paso a paso</h3>
+          <ol>
+            <li>Pedir turno con el médico de cabecera y explicar por qué hace falta ver a un especialista.</li>
+            <li>El médico carga la OME en el sistema. No hace falta imprimirla: se puede ver en la app de PAMI o consultando a la línea 138.</li>
+            <li>Buscar el especialista en la cartilla médica y pedir el turno directamente al consultorio o centro elegido.</li>
+            <li>Coordinar el turno dentro de los 90 días de vigencia de la orden.</li>
+            <li>El día de la consulta, llevar DNI, credencial de PAMI y la OME (en papel o en el celular). Y llevar el celular con la app cargada, porque en algunos lugares piden token, que es un número que se obtiene de la aplicación del celular.</li>
+          </ol>
+
+          <h3>Datos prácticos</h3>
+          <ul>
+            <li>Una orden por práctica: el médico genera una OME por cada consulta o estudio indicado.</li>
+            <li>Vigencia: 90 días desde que se emite.</li>
+            <li>Otra zona: no hace falta una orden de prestación adicional para atenderse con un prestador de otra zona.</li>
+          </ul>
+
+          <h3>Si no conseguís turno o no estás conforme con el especialista</h3>
+          <p>Como hay libre elección, el primer recurso es buscar otro especialista de la misma especialidad en la cartilla y pedirle turno, mientras la orden siga vigente. No hace falta pedir un cambio de prestador en PAMI.</p>
+          <p>Si en la zona no hay turnos disponibles, o hubo un problema con la atención, se puede hacer un reclamo (ver "Si no conseguís turno o no estás conforme" en la sección 5 y la sección 11). Conviene anotar a quién se le pidió turno, cuándo y qué respuesta se obtuvo.</p>
+
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/atencion-medica/especialidades" target="_blank" rel="noopener">Especialidades médicas y estudios <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/cartilla" target="_blank" rel="noopener">Cartilla médica <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/pdf/preguntas_ome_mdc.pdf" target="_blank" rel="noopener">Preguntas frecuentes sobre libre elección de especialistas (PDF) <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">Pregunta abierta para expertos del grupo <span class="eq-status">Aportado por el grupo</span></div>
+            <p>Para las consultas de control con el mismo especialista, ¿hace falta volver al médico de cabecera por una nueva orden? Dos experiencias concretas: "Una vez que fui al centro de salud mental no necesité más la orden del de cabecera. Y creo que igual me pasa en el hospital Vicente López, que es donde capita mi mamá, ese también es un dato. Cada afiliado capita en un lugar de internación, entiendo que solamente si no hay lugar ahí lo derivan a otro." "En mi caso es bastante discrecional: oftalmología, neurología, oncología, después de la primera derivación las órdenes de atención y de medicamentos las hace el médico especialista, pero en el caso de cardiología me piden que sea el médico de cabecera."</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><div class="num">5</div><h2>Odontología, laboratorio y salud mental: prestadores asignados</h2></div>
+        <div class="chapter-body">
+          <p>En estas tres áreas no rige la libre elección de la misma forma que con las demás especialidades: cada afiliado tiene un prestador asignado según su cartilla. Se puede consultar cuál es en "Mi cartilla", en la web de PAMI.</p>
+
+          <h3>Odontología</h3>
+          <p>PAMI asigna a cada afiliado un odontólogo o centro odontológico. No hace falta orden ni derivación: la persona puede ir directamente, con turno o de forma espontánea, llevando DNI y credencial de PAMI.</p>
+
+          <h3>Laboratorio</h3>
+          <p>Los análisis se hacen en el laboratorio asignado por cartilla. Hace falta una orden del médico de cabecera, de un especialista o del médico de guardia. Si la persona no puede trasladarse, la orden debe decir "a domicilio". No hay que hacer ningún trámite en PAMI: el turno lo pide la persona afiliada, su apoderado o un familiar directamente en el laboratorio, y el día del análisis se lleva DNI, credencial y la orden.</p>
+
+          <h3>Salud mental (psicología y psiquiatría)</h3>
+          <p>También hay un prestador asignado, pero en este caso se puede elegir otro de la cartilla libremente. No hay que hacer trámite en PAMI: el turno lo puede pedir la persona afiliada o cualquier otra persona en su nombre, directamente al prestador. Se lleva DNI y credencial. La página de PAMI no menciona que haga falta orden médica para este servicio.</p>
+
+          <h3>Cómo cambiar el prestador asignado</h3>
+          <p>Si la persona no está conforme con su odontólogo, laboratorio o prestador de salud mental, puede pedir el cambio con el trámite "Asignación o cambio de centros de atención". Se hace por internet o en una agencia con turno previo.</p>
+          <ul>
+            <li>Lo puede pedir la persona afiliada, su apoderado o un familiar designado.</li>
+            <li>Hace falta el DNI con domicilio actualizado. Si lo hace un apoderado, su DNI y el recibo de cobro del afiliado; si lo hace un familiar, su DNI y una nota de autorización firmada que aclare el cambio.</li>
+            <li>Si se pide entre el 1 y el 20 del mes, el cambio rige desde el primer día del mes siguiente; si se pide entre el 21 y el 30, impacta dos meses después.</li>
+          </ul>
+
+          <h3>Si no conseguís turno o no estás conforme</h3>
+          <ul>
+            <li>En salud mental: pedir turno directamente a otro prestador de la cartilla.</li>
+            <li>En odontología y laboratorio: pedir el cambio de prestador asignado, teniendo en cuenta que tarda en hacerse efectivo.</li>
+            <li>Mientras tanto, o si el problema sigue: hacer un reclamo por la web de PAMI, por la línea 138 o en la agencia, y guardar el número de reclamo (ver sección 11).</li>
+            <li>Anotar las fechas en que se pidió turno y las respuestas recibidas: sirve como respaldo del reclamo.</li>
+          </ul>
+
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/mi-cartilla" target="_blank" rel="noopener">Mi cartilla: ver prestadores asignados <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/prestadores" target="_blank" rel="noopener">Asignación o cambio de centros de atención <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/odontologia-consultorio" target="_blank" rel="noopener">Odontología <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/analisis-laboratorio" target="_blank" rel="noopener">Análisis de laboratorio <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/Salud_mental_Consultorios" target="_blank" rel="noopener">Psicología y psiquiatría <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">Para completar con la experiencia del grupo <span class="eq-status">Aportado por el grupo</span></div>
+            <p>¿Cuánto tiempo de espera para un turno? "En mi caso, salud mental te dan turno en aproximadamente un mes, yo pido a domicilio. En el hospital, si es muy largo, hasta 6 meses esperé para un turno."</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><div class="num">6</div><h2>Para empezar: identificar qué tipo de ayuda hace falta</h2></div>
+        <div class="chapter-body">
+          <p>Si tu familiar tiene PAMI y empieza a necesitar más ayuda para desenvolverse en la vida cotidiana, el primer paso es identificar qué necesita y qué prestación corresponde. PAMI tiene un buscador de trámites donde se pueden consultar prestaciones de salud, medicamentos, servicios sociales, insumos y elementos de apoyo: entre ellos, subsidio para auxiliar domiciliario, centros de día, residencias, internación domiciliaria, rehabilitación, pañales, sillas de ruedas, camas ortopédicas, andadores, audífonos y anteojos.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscador de trámites de PAMI <span class="arrow">→</span></a>
+          </div>
+          <h3>Antes de iniciar un trámite, conviene preguntarse</h3>
+          <div class="checklist" id="checklist1">
+            <label><input type="checkbox" data-key="c1"> ¿Qué dificultad tiene actualmente la persona?</label>
+            <label><input type="checkbox" data-key="c2"> ¿Necesita ayuda para las actividades de la vida diaria?</label>
+            <label><input type="checkbox" data-key="c3"> ¿Puede seguir viviendo sola?</label>
+            <label><input type="checkbox" data-key="c4"> ¿Necesita ayuda algunas horas o una atención más permanente?</label>
+            <label><input type="checkbox" data-key="c5"> ¿Necesita rehabilitación?</label>
+            <label><input type="checkbox" data-key="c6"> ¿Necesita algún elemento de apoyo?</label>
+            <label><input type="checkbox" data-key="c7"> ¿Necesita medicamentos o insumos?</label>
+            <label><input type="checkbox" data-key="c8"> ¿Tiene una red familiar que pueda ayudarla?</label>
+            <label><input type="checkbox" data-key="c9"> ¿La situación es nueva o viene aumentando progresivamente?</label>
+          </div>
+          <p class="checklist-note">Marcalas a medida que las vas pensando. Quedan guardadas en este dispositivo para cuando vuelvas a la guía. No todas las necesidades se resuelven de la misma manera, y tener esto claro ayuda a elegir el trámite correcto desde el principio.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><div class="num">7</div><h2>Pérdida de autonomía: horas de ayuda o vivir acompañada/o</h2></div>
+        <div class="chapter-body">
+          <p>PAMI cuenta con prestaciones específicas para situaciones de dependencia y fragilidad. Casi todas se piden por internet o en la agencia con turno previo, y la mayoría requiere un informe médico y una evaluación del equipo social de PAMI. Van ordenadas de menor a mayor nivel de apoyo.</p>
+
+          <h3>Club de día</h3>
+          <p>Espacio de estadía diurna, socio-comunitario, para personas autoválidas o con autonomía algo disminuida que necesitan apoyo social pero no cuidados permanentes. Puede ser una buena opción cuando el problema principal es el aislamiento o la soledad.</p>
+          <p>Se pide con: DNI, último recibo de cobro o credencial y el informe médico de ingreso. Lo puede tramitar la persona afiliada, su apoderado o un familiar, por internet o en la agencia.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/club-dia" target="_blank" rel="noopener">Club de día <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Auxiliar domiciliario</h3>
+          <p>Subsidio económico parcial para afrontar la dependencia funcional, cuando la persona tiene limitaciones funcionales psicofísicas y no cuenta con una adecuada red de apoyo y atención efectiva. La solicitud puede hacerla la persona afiliada, su apoderado o un familiar. Se requiere, entre otras cosas, informe médico y consentimiento informado, y la prestación queda sujeta a una evaluación social de la situación de dependencia y de la capacidad del entorno familiar para brindar ayuda.</p>
+          <p>Se pide con: DNI, último recibo de cobro o credencial, informe médico, consentimiento informado y nota de solicitud. Los modelos de estos tres formularios se descargan desde la página del trámite. Se hace por internet o en la agencia con turno.</p>
+          <p>A tener en cuenta: PAMI no publica el monto del subsidio ni la cantidad de horas que cubre.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscar "auxiliar domiciliario" en Trámites Web <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Pregunta abierta para expertos <span class="eq-status">Aportado por el grupo</span></div>
+            <p>En la práctica, ¿cuándo consideran que una familia debería empezar a consultar por este subsidio, y qué suele ocurrir durante la evaluación? "Si la persona necesita sí o sí ayuda y no puede estar sola. Yo esperé porque no sabía de este subsidio; lo que sí jugó a favor fue el tiempo que hace que yo soy cuidadora principal. Pero no dejaría de pedirlo mucho antes."</p>
+          </div>
+
+          <h3>Centro de día</h3>
+          <p>Para personas de 60 años o más que pueden ser autoválidas, frágiles o presentar dependencia leve o moderada para las actividades de la vida diaria. También existe una modalidad especializada para personas con deterioro cognitivo o demencias leves o moderadas.</p>
+          <p>Se pide con: DNI y credencial, último recibo de haberes, informe social, informe médico (el formulario "Anexo IV", que completa el médico tratante; para deterioro cognitivo, preferentemente psiquiatra o neurólogo), nota de solicitud (la entregan en la agencia) y consentimiento informado. Se presenta en la agencia con turno previo, con originales y fotocopias.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscar "centro de día" en Trámites Web <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Pregunta abierta para expertos <span class="eq-status">Aportado por el grupo</span></div>
+            <p>¿En qué momento una familia debería pensar en un centro de día? ¿Qué señales indican que puede ser una alternativa adecuada? "No tengo esa experiencia, lo único que puedo aportar es que de esto se ocupa también la trabajadora social, como con el subsidio de cuidadoras, y que hay una larga lista de espera con prioridades."</p>
+          </div>
+
+          <h3>Residencias de larga estadía</h3>
+          <p>Para personas mayores que requieren apoyo y cuidados en las actividades básicas de la vida diaria y no pueden realizarlas adecuadamente en su entorno. La admisión está sujeta a una evaluación sociosanitaria: no es una prestación automática para cualquier afiliado que la solicite.</p>
+          <p>Se pide con: recibo de haberes, formulario de Evaluación Integral de Salud, estudios complementarios (radiografía de tórax, PPD/Mantoux, hemograma y análisis de orina), formulario de Consentimiento Libre e Informado, donde se eligen al menos tres residencias, y un Acta Compromiso firmada por la persona y su referente o red de apoyo. Se hace por internet o en la agencia con turno.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Buscar "residencias" en Trámites Web <span class="arrow">→</span></a>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Tema pendiente de desarrollar <span class="eq-status">En preparación</span></div>
+            <p>Merece su propia sección aparte, porque es una de las preguntas que más aparece en el grupo: "Mi familiar ya no puede vivir sola, ¿qué alternativas tengo?"</p>
+          </div>
+
+          <h3>Internación domiciliaria</h3>
+          <p>Otra alternativa, para otro tipo de situación: atención médica, de enfermería y de rehabilitación en la casa, para cuadros agudos o subagudos (por ejemplo, al salir de una internación). No la pide la familia sino el médico de cabecera o el tratante, mediante una OME. Solo en casos excepcionales puede presentarla un familiar en la agencia. Tiene tiempos y alcances definidos: no reemplaza a un cuidador permanente.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/internacion-domiciliaria" target="_blank" rel="noopener">Internación domiciliaria <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><div class="num">8</div><h2>Elementos que puede necesitar una persona con mayor dependencia</h2></div>
+        <div class="chapter-body">
+          <p>Dentro de los trámites de PAMI aparecen distintos elementos de ayuda técnica:</p>
+          <div class="elements-grid">
+            <span>Silla de ruedas</span><span>Cama ortopédica</span><span>Andador</span><span>Bastón</span><span>Muletas</span><span>Accesorios</span><span>Pañales</span><span>Oxigenoterapia</span><span>Audífonos</span><span>Anteojos</span><span>Elementos de ostomía</span>
+          </div>
+
+          <h3>Cómo se piden, en general</h3>
+          <p>El punto de partida casi siempre es una Orden Médica Electrónica (OME) del médico de cabecera o de un especialista. En el caso de sillas de ruedas y camas ortopédicas, si el médico está habilitado, puede iniciar él mismo el trámite desde la OME. Si no hay OME, se presenta DNI, una orden manual del médico y un resumen de historia clínica con peso y talla. Se hace por internet o en la agencia con turno.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/silla-ruedas" target="_blank" rel="noopener">Silla de ruedas <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/camas-ortopedicas" target="_blank" rel="noopener">Camas ortopédicas <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/andadores" target="_blank" rel="noopener">Andadores <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/bastones" target="_blank" rel="noopener">Bastones <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/accesorios" target="_blank" rel="noopener">Accesorios <span class="arrow">→</span></a>
+          </div>
+          <p>Para una silla de ruedas, por ejemplo, PAMI indica que puede iniciar el trámite el afiliado, apoderado, familiar o incluso el médico mediante la Orden Médica Electrónica, cuando está habilitado.</p>
+
+          <h3>Anteojos</h3>
+          <p>Los prescribe el oftalmólogo con una OME, que tiene 150 días de validez. La óptica es de libre elección en todo el país y PAMI los cubre sin cargo: un par para cerca y otro para lejos, o un par bifocal, cada 2 años. La persona tiene que ir a la óptica para la prueba.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/anteojos" target="_blank" rel="noopener">Anteojos <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Audífonos</h3>
+          <p>Los pide el otorrinolaringólogo del sistema PAMI con una OME. Hace falta una audiometría y una logoaudiometría, que pueden hacerse en PAMI o de forma particular, con menos de 6 meses de antigüedad. Después la persona va al centro audiológico que elija.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/solicitud-audifonos" target="_blank" rel="noopener">Solicitud de audífonos <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Oxigenoterapia domiciliaria</h3>
+          <p>La prescribe el neumonólogo, el cardiólogo o el médico de cabecera. Según el equipo, se piden estudios distintos: gases en sangre para tubos o concentrador (y además test de marcha para la mochila de oxígeno), o polisomnografía o poligrafía para CPAP o BiPAP. También se firma un acta compromiso.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/oxigenoterapia-domicilio" target="_blank" rel="noopener">Oxigenoterapia domiciliaria <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/ostomia" target="_blank" rel="noopener">Ostomía <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramites" target="_blank" rel="noopener">Trámites e insumos de PAMI <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/higienicos" target="_blank" rel="noopener">Pañales <span class="arrow">→</span></a>
+          </div>
+
+          <div class="principle-box">
+            <div class="pb-label">Un caso que merece destacarse: pañales</div>
+            <p>Los pañales y apósitos se entregan directamente en el domicilio declarado, sin costo para el afiliado. Desde el 1 de marzo de 2026, las nuevas Órdenes Médicas Electrónicas tienen una vigencia de 90 días y deben renovarse para mantener la provisión. Se entregan 30, 60 o 90 unidades por mes según el nivel de incontinencia. Puede recibirlos cualquier persona mayor de 18 años. Si no hay nadie, el correo deja aviso y vuelve; si tampoco hay nadie la segunda vez, quedan en un punto de retiro durante 7 días corridos.</p>
+            <p>Si la entrega no llega o llega incompleta: reclamar al 138 o por el formulario web. PAMI indica que la reposición se hace en hasta 7 días hábiles. Para cambiar el domicilio de entrega: app Mi PAMI (Mi Perfil &gt; Mis datos) o línea 138.</p>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Para completar con la experiencia del grupo <span class="eq-status">Aportado por el grupo</span></div>
+            <p>Según la experiencia del grupo, reciben una cantidad fija de pañales: 90 por mes, en tres bolsones de 30. Con CUD, el médico de cabecera puede solicitar 120, adjuntando historia clínica que lo justifique y acercándose a la agencia con el CUD para que lo carguen. Se renuevan cada tres meses. Los pañales los entrega una empresa tercerizada, Urbano Exprés (0810-220-1410); en la app avisan cuando están por llegar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s9">
+        <div class="chapter-head"><div class="num">9</div><h2>Medicamentos</h2></div>
+        <div class="chapter-body">
+          <p>La cobertura de medicamentos en PAMI depende de dos cosas: qué medicamento es y qué patología trata. Siempre hace falta una receta electrónica de un médico del sistema PAMI. Algunas coberturas se aplican solas, directamente en la farmacia; otras requieren un trámite previo. Conocer la diferencia evita pagar de más.</p>
+
+          <h3>Los niveles de cobertura</h3>
+          <ul>
+            <li>100% para patologías específicas: diabetes, oncología y oncohematología, VIH, hepatitis B y C, hemofilia, trasplantes, artritis reumatoidea, osteoartritis, insuficiencia renal crónica e hiperparatiroidismo, trastornos hematopoyéticos, enfermedades fibroquísticas y medicamentos oftalmológicos intravítreos.</li>
+            <li>Entre 50% y 80% para medicamentos de patologías crónicas y agudas.</li>
+            <li>40% para medicamentos de uso eventual.</li>
+            <li>100% por subsidio social, para quien no puede afrontar el costo (ver más abajo).</li>
+            <li>100% por vía de excepción, para medicamentos que no tienen cobertura habitual.</li>
+            <li>100% de la medicación asociada a la discapacidad, para quien tiene CUD (ver sección 10).</li>
+          </ul>
+
+          <h3>Diabetes</h3>
+          <p>PAMI cubre al 100% insulinas, hipoglucemiantes orales, tiras reactivas y los elementos para aplicar la insulina. El paso clave es que la persona esté inscripta en el Padrón de personas con diabetes. La inscripción la hace el médico de cabecera, adjuntando estudios de laboratorio; la familia no tiene que hacer ningún trámite. Pero es necesario renovarla anualmente, lo que significa que cada año hay que pedirle al médico de cabecera que la empadrone como diabética.</p>
+          <p><strong>Tiras reactivas y descartables:</strong> incluyen tiras, lancetas, agujas y jeringas descartables, y lapiceras para aplicar insulina. Se piden con DNI, credencial y receta electrónica. Una vez al año hay que actualizar el padrón con un análisis de hemoglobina glicosilada (HbA1c) y glucemia firmado por el bioquímico; la renovación se hace a través del médico de cabecera. Si se necesita una cantidad mayor a la establecida, se pide con el formulario de vía de excepción.</p>
+          <p><strong>Insulinas especiales y otros antidiabéticos:</strong> algunas insulinas (glargina, degludec, detemir) y otros antidiabéticos no están incluidos en la cobertura del padrón y se piden por vía de excepción. Hace falta la receta del especialista y un formulario firmado por él: el de Insulinas por vía de excepción (con los dos últimos análisis de sangre) o el de Riesgo Cardiovascular, según el medicamento. Se inicia en la UGL o en la agencia.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/diabetes" target="_blank" rel="noopener">Diabetes en PAMI <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/tiras-reactivas" target="_blank" rel="noopener">Tiras reactivas y descartables <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/guia-tramites/medicamentos-via-excepcion-diabetes" target="_blank" rel="noopener">Medicamentos para diabetes por vía de excepción <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Oncología y oncohematología</h3>
+          <p>PAMI cubre el 100% de los medicamentos oncológicos y oncohematológicos, pero no es automático: hay que hacer un trámite. Se presenta la receta electrónica del médico especialista, el formulario de medicamentos oncológicos (u oncohematológicos) completo, un resumen de historia clínica y la documentación que indica el propio formulario. Lo puede hacer la persona afiliada, su apoderado o un familiar, por internet o en la agencia con turno.</p>
+          <p>A tener en cuenta: la página de PAMI no informa plazos de aprobación ni cómo o dónde se entrega la medicación. Conviene preguntarlo al iniciar el trámite y guardar el número.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/medicamentos-oncologicos" target="_blank" rel="noopener">Medicamentos oncológicos <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/medicamentos-oncohematologicos" target="_blank" rel="noopener">Medicamentos oncohematológicos <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Subsidio social: medicamentos al 100% por razones económicas</h3>
+          <p>Es para afiliados que no pueden afrontar el costo de sus medicamentos. Estos son los requisitos:</p>
+          <ul>
+            <li>Ingresos mensuales menores a 1,5 haberes mínimos previsionales, o menores a 3 haberes mínimos si en el hogar hay una persona con CUD.</li>
+            <li>No tener prepaga ni más de un inmueble.</li>
+            <li>No tener un vehículo de menos de 10 años de antigüedad (salvo en hogares con CUD), ni aeronaves o embarcaciones de lujo, ni activos societarios que muestren capacidad económica.</li>
+          </ul>
+          <p>Cómo se pide, según la cantidad de medicamentos: hasta 4, por internet y con validación automática; hasta 6, con evaluación de la UGL; más de 6, con evaluación de la UGL y autorización de Nivel Central. Hace falta DNI, credencial, receta electrónica de un médico de PAMI con el diagnóstico codificado, los estudios que avalan los diagnósticos y un formulario firmado por el médico tratante.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/medicamentos-sin-cargo-hasta-6" target="_blank" rel="noopener">Subsidio social, hasta 6 medicamentos <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/medicamentos-sin-cargo-mas-de-6" target="_blank" rel="noopener">Subsidio social, más de 6 medicamentos <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Medicamentos sin cobertura habitual: vía de excepción</h3>
+          <p>Para medicamentos ambulatorios que no tienen cobertura habitual de PAMI, se puede pedir una cobertura extraordinaria del 100%. Hace falta la receta del especialista, el formulario de pedido (inicio o renovación), un formulario de consentimiento, resumen de historia clínica y los estudios que justifiquen el pedido. Se hace por internet o en la agencia.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/medicamentos-excepcion" target="_blank" rel="noopener">Otros medicamentos especiales por vía de excepción <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/medicamentos" target="_blank" rel="noopener">Cobertura de medicamentos (página general) <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">Pregunta central de esta sección <span class="eq-status">Aún sin responder</span></div>
+            <p>Mi familiar toma muchos medicamentos y no puede pagarlos, ¿qué puede pedir a PAMI?</p>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Para completar con la experiencia del grupo <span class="eq-status">Aún sin responder</span></div>
+            <p>Cuánto tarda en la práctica la aprobación de los oncológicos y cómo llega la medicación. Qué hacer cuando la farmacia no tiene el medicamento o cobra una diferencia que no corresponde.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s10">
+        <div class="chapter-head"><div class="num">10</div><h2>Certificado Único de Discapacidad (CUD)</h2></div>
+        <div class="chapter-body">
+          <p>El CUD es un documento público, gratuito y voluntario, válido en todo el país, que certifica una situación de discapacidad. Lo emite una Junta Evaluadora interdisciplinaria y da acceso a los derechos que establecen las leyes nacionales 22.431 y 24.901. Para una persona afiliada a PAMI, tenerlo abre prestaciones y amplía topes que sin el certificado no están disponibles.</p>
+
+          <h3>Qué cambia en PAMI si la persona tiene CUD</h3>
+          <p><strong>Medicamentos:</strong> PAMI cubre el 100% de la medicación asociada a la discapacidad certificada. No es automático: hay que hacer el trámite "Cobertura de medicamentos por discapacidad", con DNI, credencial, receta del especialista, historia clínica, el formulario de pedido (inicio o renovación) y el CUD.</p>
+          <p><strong>Subsidio social de medicamentos:</strong> el tope de ingresos sube de 1,5 a 3 haberes mínimos, y no se exige que el vehículo tenga más de 10 años (ver sección 9).</p>
+          <p><strong>Rehabilitación:</strong> prestaciones para recuperar o adquirir aptitudes y lograr la mayor integración social posible. Se piden con DNI, credencial, CUD y la solicitud del responsable, familiar o curador.</p>
+          <p><strong>Transporte:</strong> traslados a través de empresas contratadas por PAMI, por ejemplo, para ir a rehabilitación. Hace falta la orden médica del traslado, la certificación del establecimiento al que asiste y el presupuesto del transportista, además del CUD.</p>
+          <p><strong>Asistencia:</strong> centro de día, club de día, pequeño hogar o residencia para personas con discapacidad, con alojamiento, alimentación y atención especializada según corresponda. Se accede según la discapacidad y la situación sociofamiliar, con CUD y un formulario de informe médico.</p>
+          <p><strong>Apoyo para la inclusión social:</strong> aporte económico para comprar bienes que la persona necesita para su inclusión social. Se tramita solo en la agencia, con informe social, escala de vulnerabilidad, dos presupuestos y otra documentación. La página de este trámite no lista el CUD entre los requisitos, así que conviene consultarlo en la agencia.</p>
+          <p>Casi todos estos trámites se hacen por internet o en la agencia con turno previo, y los puede hacer la persona afiliada, su apoderado o un familiar.</p>
+
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/tramite/medicamentos-discapacidad" target="_blank" rel="noopener">Medicamentos por discapacidad <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/rehabilitacion-personas-discapacidad" target="_blank" rel="noopener">Rehabilitación para personas con discapacidad <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/transporte-personas-discapacidad" target="_blank" rel="noopener">Transporte para personas con discapacidad <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/asistencia-personas-discapacidad" target="_blank" rel="noopener">Asistencia a personas con discapacidad <span class="arrow">→</span></a>
+            <a class="official-link" href="https://www.pami.org.ar/tramite/subsidio-apoyo-domiciliario" target="_blank" rel="noopener">Apoyo para la inclusión social <span class="arrow">→</span></a>
+          </div>
+
+          <h3>Otros derechos generales del CUD</h3>
+          <ul>
+            <li>Cobertura del 100% de las prestaciones de rehabilitación vinculadas a la discapacidad certificada.</li>
+            <li>Viajes gratuitos en transporte público terrestre.</li>
+            <li>Libre estacionamiento con el Símbolo Internacional de Acceso.</li>
+            <li>Exenciones, por ejemplo, en peajes o impuestos municipales, según lo que disponga cada autoridad.</li>
+            <li>El CUD está disponible en formato digital en la app Mi Argentina.</li>
+          </ul>
+
+          <h3>Cómo se tramita el CUD</h3>
+          <p>Ver guía específica elaborada sobre CUD.</p>
+
+          <h3>Y después, en PAMI</h3>
+          <p>Tener el CUD no activa nada en PAMI por sí solo: hay que presentar el certificado en cada trámite que corresponda. El orden práctico suele ser: primero, medicamentos por discapacidad; luego revisar si conviene pedir o reconsiderar el subsidio social con el tope ampliado; y después, según la necesidad, rehabilitación, transporte o asistencia.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.argentina.gob.ar/servicio/como-obtener-el-certificado-unico-de-discapacidad-cud" target="_blank" rel="noopener">Cómo obtener el CUD (Argentina.gob.ar) <span class="arrow">→</span></a>
+          </div>
+
+          <div class="expert-q">
+            <div class="eq-label">Pregunta abierta para expertos <span class="eq-status">Aún sin responder</span></div>
+            <p>¿Qué vigencia suele tener el CUD en personas mayores, y qué pasa con las prestaciones de PAMI cuando vence? ¿Qué conviene llevar a la Junta Evaluadora para que la evaluación refleje bien la situación de la persona?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s11">
+        <div class="chapter-head"><div class="num">11</div><h2>Datos de contacto y ayuda</h2></div>
+        <div class="chapter-body">
+          <div class="channels">
+            <div class="channel-card">
+              <div class="ch-title">📞 PAMI Escucha y Responde</div>
+              <div class="ch-detail">Línea 138, gratuita, las 24 horas, los 365 días del año. Consultas, sugerencias y reclamos.</div>
+              <a class="plain-link" href="tel:138">📞 Llamar al 138 <span class="arrow">→</span></a>
+            </div>
+            <div class="channel-card">
+              <div class="ch-title">🏢 Agencia o UGL</div>
+              <div class="ch-detail">Más de 600 agencias y 38 UGL en todo el país.</div>
+              <a class="official-link" href="https://www.pami.org.ar/agencias-ugls" target="_blank" rel="noopener">Buscar agencia <span class="arrow">→</span></a>
+            </div>
+            <div class="channel-card">
+              <div class="ch-title">💻 Mi PAMI</div>
+              <div class="ch-detail">Para realizar y consultar distintos trámites y datos de la persona afiliada.</div>
+              <a class="official-link" href="https://www.pami.org.ar/mipami" target="_blank" rel="noopener">Ir a Mi PAMI <span class="arrow">→</span></a>
+            </div>
+            <div class="channel-card">
+              <div class="ch-title">🌐 Sitio oficial</div>
+              <div class="ch-detail">pami.org.ar, el punto de partida para cualquier trámite.</div>
+              <a class="official-link" href="https://www.pami.org.ar/" target="_blank" rel="noopener">pami.org.ar <span class="arrow">→</span></a>
+            </div>
+          </div>
+
+          <div class="alert">
+            <div class="alert-label">⚠️ Atención con las estafas</div>
+            <p>PAME, el bot de WhatsApp de PAMI, está fuera de servicio desde el 1 de enero de 2026, mientras PAMI trabaja en una nueva versión. PAMI indica que no debe responderse a supuestos mensajes de PAMI por WhatsApp, y recomienda usar únicamente los canales oficiales de esta sección.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s12">
+        <div class="chapter-head"><div class="num">12</div><h2>Si PAMI no responde o rechaza una prestación</h2></div>
+        <div class="chapter-body">
+          <p>PAMI dispone de un sistema específico para reclamos sobre prestaciones, servicios, medicamentos, insumos, servicios sociales y otras situaciones.</p>
+          <div class="link-row">
+            <a class="official-link" href="https://www.pami.org.ar/reclamos" target="_blank" rel="noopener">Iniciar un reclamo <span class="arrow">→</span></a>
+          </div>
+          <div class="principle-box">
+            <div class="pb-label">Principio general de esta guía</div>
+            <p>No quedarse solamente con una respuesta verbal. Cuando sea necesario, dejar registrado el pedido o reclamo, y conservar el número de trámite.</p>
+          </div>
+          <div class="expert-q">
+            <div class="eq-label">Para completar con expertos <span class="eq-status">Aún sin responder</span></div>
+            <p>Cómo funciona realmente ese circuito, de principio a fin.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="shell">
+    Guía elaborada para la comunidad Cuidar a Nuestros Padres, a partir de información pública de PAMI y de los aportes del grupo. Se irá actualizando a medida que se sume la experiencia de las familias y de los expertos consultados. Ante cualquier duda puntual sobre un caso, el canal oficial es la línea 138.
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const tocNav = document.getElementById('tocNav');
+  menuBtn.addEventListener('click', () => {
+    tocNav.classList.toggle('open');
+    menuBtn.textContent = tocNav.classList.contains('open') ? 'Cerrar' : 'Índice';
+  });
+  tocNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    tocNav.classList.remove('open');
+    menuBtn.textContent = 'Índice';
+  }));
+
+  // active section highlight
+  const links = Array.from(document.querySelectorAll('nav.toc a'));
+  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const idx = sections.indexOf(entry.target);
+      if (idx === -1) return;
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        links[idx].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  sections.forEach(s => s && observer.observe(s));
+
+  // checklist persistence (per-viewer convenience only)
+  try {
+    const saved = JSON.parse(localStorage.getItem('guiaPami_checklist') || '{}');
+    document.querySelectorAll('#checklist1 input[type="checkbox"]').forEach(cb => {
+      const key = cb.dataset.key;
+      if (saved[key]) cb.checked = true;
+      cb.addEventListener('change', () => {
+        const state = JSON.parse(localStorage.getItem('guiaPami_checklist') || '{}');
+        state[key] = cb.checked;
+        try { localStorage.setItem('guiaPami_checklist', JSON.stringify(state)); } catch (e) {}
+      });
+    });
+  } catch (e) {}
+</script>
+
+</body>
+</html>
+
+</body></html>
