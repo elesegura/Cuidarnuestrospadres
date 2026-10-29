@@ -1,0 +1,378 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Guía de contratación de cuidadores</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Estilo de las guías de Cuidar a Nuestros Padres: fondo crema, acento bordó, capítulos numerados en una sola columna de lectura. */
+  :root {
+    --bg: #F3EEE2;
+    --bg-raised: #FFFFFF;
+    --ink: #241E1A;
+    --ink-soft: #5E5147;
+    --line: #DECFB8;
+    --teal: #8E3A46;
+    --teal-deep: #6B2530;
+    --teal-tint: #F1E2E4;
+    --ochre: #8A5F12;
+    --ochre-tint: #F6EAD2;
+    --rust: #B1481F;
+    --rust-tint: #F7E1D3;
+    --card-shadow: 0 1px 0 rgba(36,30,26,0.07);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: var(--teal-deep); overflow-wrap: anywhere; }
+  a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+  .shell { max-width: 820px; margin: 0 auto; padding: 0 8px; }
+
+  /* ===== Hero ===== */
+  .hero { padding: 48px 0 32px; border-bottom: 1px solid var(--line); }
+  .hero-eyebrow { color: var(--teal-deep); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+  .hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+    line-height: 1.1;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .hero p.lede { max-width: 62ch; font-size: 1.06rem; color: var(--ink-soft); margin: 0; }
+
+  /* ===== Capítulos ===== */
+  main { padding: 40px 0 60px; }
+  section.chapter { padding: 8px 0 44px; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+  section.chapter:last-of-type { border-bottom: none; }
+
+  .chapter-head { display: flex; gap: 16px; align-items: baseline; margin-bottom: 16px; }
+  .chapter-head .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1rem;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 50%;
+    width: 34px; height: 34px; min-width: 34px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 500;
+  }
+  .chapter-head h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; line-height: 1.25; text-wrap: balance; }
+
+  .chapter-body { padding-left: 50px; }
+  .chapter-body > p { max-width: 68ch; }
+  .chapter-body h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 1.1rem; margin: 26px 0 8px; }
+  .chapter-body h3:first-child { margin-top: 0; }
+  .chapter-body ul, .chapter-body ol { max-width: 68ch; padding-left: 22px; }
+  .chapter-body li { margin-bottom: 5px; }
+  .chapter-body li::marker { color: var(--teal); }
+
+  .official-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 1px solid var(--teal); color: var(--teal-deep);
+    text-decoration: none; border-radius: 100px;
+    padding: 7px 15px; font-size: 0.88rem; font-weight: 600;
+    margin: 4px 8px 4px 0;
+  }
+  .official-link:hover { background: var(--teal-tint); }
+  .official-link .arrow { transition: transform .15s; }
+  .official-link:hover .arrow { transform: translateX(2px); }
+  .link-row { margin: 14px 0 6px; }
+
+  /* recuadro destacado */
+  .principle-box { background: var(--teal-tint); border-radius: 10px; padding: 18px 20px; max-width: 68ch; margin: 22px 0 8px; }
+  .principle-box .pb-label {
+    font-size: 0.78rem; font-weight: 700; color: var(--teal-deep);
+    text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px;
+  }
+  .principle-box h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 1.1rem; margin: 0 0 8px; }
+  .principle-box p { margin: 0 0 10px; }
+  .principle-box ul { margin: 0 0 10px; padding-left: 20px; }
+  .principle-box p:last-child, .principle-box ul:last-child { margin-bottom: 0; }
+
+  /* alerta */
+  .alert { border: 1px solid var(--rust); background: var(--rust-tint); border-radius: 10px; padding: 16px 20px; max-width: 68ch; margin: 16px 0; }
+  .alert .alert-label { font-weight: 700; color: var(--rust); font-size: 0.85rem; margin-bottom: 6px; }
+  .alert p { margin: 0; }
+
+  /* nota */
+  .tip { background: var(--ochre-tint); border-radius: 10px; padding: 16px 20px; max-width: 68ch; margin: 16px 0; }
+  .tip .tip-label { font-weight: 700; color: var(--ochre); font-size: 0.78rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+  .tip p { margin: 0; }
+
+  /* tarjetas */
+  .channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; max-width: 78ch; margin: 0 0 18px; }
+  .channel-card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; box-shadow: var(--card-shadow); min-width: 0; }
+  .channel-card .ch-title { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15; color: var(--teal-deep); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+  .channel-card .ch-detail { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+
+  /* tabla */
+  .compare-table { max-width: 78ch; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 12px 0 16px; background: var(--bg-raised); }
+  .compare-row { display: grid; grid-template-columns: 90px 1fr; border-bottom: 1px solid var(--line); align-items: center; }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row.head {
+    background: var(--teal-tint); font-size: 0.78rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .03em; color: var(--teal-deep);
+  }
+  .compare-row > div { padding: 10px 14px; font-size: 0.92rem; min-width: 0; }
+  .compare-row .rubro { font-weight: 700; color: var(--teal-deep); font-variant-numeric: tabular-nums; }
+
+  footer { border-top: 1px solid var(--line); padding: 26px 0 50px; color: var(--ink-soft); font-size: 0.86rem; max-width: 68ch; }
+
+  /* índice */
+  .toc { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; margin: 28px 0 0; }
+  .toc-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-soft); margin-bottom: 10px; }
+  .toc ol { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 28px; }
+  .toc li { margin-bottom: 8px; break-inside: avoid; font-size: 0.92rem; }
+  .toc a { text-decoration: none; font-weight: 600; color: var(--ink); }
+  .toc a:hover { color: var(--teal-deep); }
+  .toc .toc-num { color: var(--teal); font-weight: 700; margin-right: 6px; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } }
+
+  @media (max-width: 640px) {
+    .chapter-body { padding-left: 0; margin-left: 0; }
+    .chapter-head .num { width: 30px; height: 30px; min-width: 30px; }
+    .compare-row { grid-template-columns: 74px 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .official-link .arrow { transition: none; } }
+</style>
+
+<div class="shell">
+
+  <section class="hero">
+    <div class="hero-eyebrow">Cuidar a Nuestros Padres</div>
+    <h1>Guía de contratación de cuidadores domiciliarios</h1>
+    <p class="lede">Contratar a una persona para cuidar a un familiar mayor implica definir qué tipo de asistencia se necesita, qué tareas realizará, qué formación y experiencia debe tener y cuáles son las condiciones laborales correspondientes.</p>
+  </section>
+
+  <nav class="toc" aria-label="Índice">
+    <div class="toc-label">Índice</div>
+    <ol>
+      <li><a href="#s1"><span class="toc-num">1</span>Qué es un cuidador domiciliario</a></li>
+      <li><a href="#s2"><span class="toc-num">2</span>Marco legal y categoría</a></li>
+      <li><a href="#s3"><span class="toc-num">3</span>Antes de contratar</a></li>
+      <li><a href="#s4"><span class="toc-num">4</span>Jornada, descansos y condiciones</a></li>
+      <li><a href="#s5"><span class="toc-num">5</span>Remuneración y registración</a></li>
+      <li><a href="#s6"><span class="toc-num">6</span>Recibo de sueldo</a></li>
+      <li><a href="#s7"><span class="toc-num">7</span>ART</a></li>
+      <li><a href="#s8"><span class="toc-num">8</span>Asignaciones familiares</a></li>
+      <li><a href="#s9"><span class="toc-num">9</span>Fuentes</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section class="chapter" id="s1">
+      <div class="chapter-head"><div class="num">1</div><h2>¿Qué es un cuidador domiciliario y qué tareas tiene?</h2></div>
+      <div class="chapter-body">
+        <p>El cuidador domiciliario brinda asistencia y cuidado no terapéutico a una persona en su domicilio, principalmente en actividades de la vida diaria necesarias para su bienestar y autonomía.</p>
+        <h3>Entre sus tareas pueden encontrarse</h3>
+        <ul>
+          <li>Acompañamiento y asistencia en actividades de la vida diaria.</li>
+          <li>Administración de medicamentos por vía oral o de uso externo, indicados por profesionales.</li>
+          <li>Preparación de alimentos e ingesta asistida.</li>
+          <li>Higiene y confort.</li>
+          <li>Apoyo en el autocuidado de la persona mayor.</li>
+          <li>Colaboración en prácticas indicadas por profesionales.</li>
+          <li>Detección de barreras arquitectónicas y prevención de accidentes.</li>
+        </ul>
+        <h3>Lo que no corresponde al cuidador</h3>
+        <p>No corresponden al cuidador las tareas generales de limpieza de la casa, el acompañamiento terapéutico ni las tareas propias de enfermería o auxiliar de enfermería.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s2">
+      <div class="chapter-head"><div class="num">2</div><h2>¿Cómo se regula laboralmente el trabajo de un cuidador?</h2></div>
+      <div class="chapter-body">
+        <p>Cuando una persona es contratada por una familia para brindar asistencia y cuidado no terapéutico en un domicilio particular, su relación laboral está comprendida en la Ley Nacional N.º 26.844, Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares.</p>
+        <p>Esto no significa que el cuidador sea personal de limpieza. La ley contempla distintas categorías según las tareas realizadas. Para quienes brindan cuidado no terapéutico de personas, corresponde la categoría “Asistencia y cuidado de personas”.</p>
+        <p>La Comisión Nacional de Trabajo en Casas Particulares (CNTCP) establece las categorías y fija las remuneraciones mínimas correspondientes.</p>
+        <h3>Categoría: Asistencia y cuidado de personas</h3>
+        <p>Esta categoría comprende la asistencia y el cuidado no terapéutico de personas enfermas, con discapacidad, niños, niñas, adolescentes y adultos mayores.</p>
+        <div class="tip">
+          <div class="tip-label">Importante</div>
+          <p>Esta categoría corresponde al cuidado no terapéutico. No debe confundirse con el trabajo de enfermeros, auxiliares de enfermería, acompañantes terapéuticos u otros profesionales cuya actividad requiera una formación y habilitación específica.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s3">
+      <div class="chapter-head"><div class="num">3</div><h2>Antes de contratar</h2></div>
+      <div class="chapter-body">
+        <h3>Entrevista y participación de la persona mayor</h3>
+        <p>Se recomienda realizar entrevistas antes de contratar. Siempre que sea posible, la persona mayor debería participar de la entrevista y de la decisión de contratación. Si necesita apoyo, puede estar acompañada por alguien de confianza.</p>
+        <p>Además de evaluar formación y experiencia, es importante considerar el trato, la capacidad de escucha y la posibilidad de construir un vínculo basado en el respeto y la confianza.</p>
+
+        <h3>¿Es necesario que el cuidador tenga formación?</h3>
+        <p>Sí. La formación específica en cuidado de personas mayores proporciona herramientas para realizar las tareas adecuadamente, favorecer el bienestar de la persona cuidada y prevenir situaciones de riesgo y sobrecarga.</p>
+        <p>Al entrevistar a una persona es recomendable consultar por su formación, experiencia y referencias laborales.</p>
+
+        <h3>Referencias y antecedentes</h3>
+        <p>Es recomendable solicitar referencias laborales y verificar la experiencia declarada.</p>
+        <p>También puede solicitarse un certificado de antecedentes penales si la persona contratante lo considera pertinente. Este certificado informa sobre antecedentes o procesos penales pendientes, pero no garantiza por sí mismo la prevención de situaciones de abuso o malos tratos.</p>
+
+        <h3>Cobertura de salud</h3>
+        <p>También es conveniente consultar con la obra social, medicina prepaga u organismo de salud de la persona mayor. La cobertura puede contemplar total o parcialmente el costo del servicio o disponer de otros dispositivos de asistencia que puedan ayudar a la familia.</p>
+
+        <div class="principle-box">
+          <div class="pb-label">Una decisión para tomar antes de empezar</div>
+          <h3>¿A nombre de quién debe estar la contratación?</h3>
+          <p>Esta es una decisión que conviene tomar antes de empezar, porque tiene consecuencias legales concretas.</p>
+          <p>La contratación puede hacerse a nombre de la persona mayor (si está en condiciones de asumir el rol de empleadora) o a nombre de un hijo, hija u otro familiar responsable de su cuidado. No es solo un trámite administrativo: quien figura como empleador es quien asume las obligaciones laborales y, llegado el momento, define cómo se calcula la indemnización.</p>
+          <p>Esto es importante especialmente en dos situaciones frecuentes:</p>
+          <ul>
+            <li>Si la persona cuidada fallece, la indemnización que corresponde es de medio sueldo por año trabajado.</li>
+            <li>Si la contratación estuvo a nombre de un hijo o hija y, tras el fallecimiento, la familia decide que ya no necesita los servicios del cuidador, la indemnización es de un sueldo por año trabajado.</li>
+          </ul>
+          <p>Por eso recomendamos conversarlo en familia antes de contratar, no solo pensando en quién puede hacerse cargo del trámite hoy, sino en qué escenario es más probable a futuro.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s4">
+      <div class="chapter-head"><div class="num">4</div><h2>Jornada laboral, descansos, horas extras y condiciones de trabajo</h2></div>
+      <div class="chapter-body">
+        <div class="channels" aria-label="Cifras de la jornada">
+          <div class="channel-card"><div class="ch-title">8 h</div><p class="ch-detail">por día</p></div>
+          <div class="channel-card"><div class="ch-title">48 h</div><p class="ch-detail">por semana</p></div>
+          <div class="channel-card"><div class="ch-title">9 h</div><p class="ch-detail">máximo por día</p></div>
+          <div class="channel-card"><div class="ch-title">12 h</div><p class="ch-detail">de pausa, con retiro</p></div>
+        </div>
+
+        <h3>Jornada laboral</h3>
+        <p>La jornada laboral es de 8 horas diarias o 48 horas semanales, con un máximo de 9 horas por día.</p>
+        <p>Las horas pueden distribuirse de manera desigual durante la semana, pero no pueden superarse las 9 horas diarias ni las 48 horas semanales.</p>
+
+        <h3>Trabajo sin retiro</h3>
+        <p>Quienes trabajan sin retiro deben contar con:</p>
+        <ul>
+          <li>9 horas de descanso nocturno.</li>
+          <li>3 horas continuas de descanso entre las tareas de la mañana y de la tarde, incluyendo el tiempo necesario para el almuerzo.</li>
+          <li>Descanso semanal desde las 13 horas del sábado hasta las 24 horas del domingo.</li>
+        </ul>
+
+        <h3>Trabajo con retiro</h3>
+        <p>Cuando una persona trabaja con retiro para un mismo empleador, debe existir una pausa mínima de 12 horas entre el final de una jornada y el comienzo de la siguiente.</p>
+
+        <h3>Horas extras</h3>
+        <p>Cuando se supera la jornada legal, las horas extras deben abonarse con un recargo del:</p>
+        <div class="compare-table">
+          <div class="compare-row head"><div>Recargo</div><div>Cuándo</div></div>
+          <div class="compare-row"><div class="rubro">50 %</div><div>En días comunes.</div></div>
+          <div class="compare-row"><div class="rubro">100 %</div><div>Los sábados después de las 13 horas, domingos y feriados nacionales.</div></div>
+        </div>
+
+        <h3>Condiciones de trabajo</h3>
+        <p>El empleador debe proporcionar la ropa y los elementos necesarios para realizar el trabajo.</p>
+        <p>En la modalidad sin retiro, debe garantizar condiciones adecuadas de descanso y proporcionar una habitación amueblada e higiénica para uso exclusivo del trabajador, de acuerdo con la normativa.</p>
+        <p>También deben contemplarse condiciones adecuadas de alimentación, según la modalidad y duración de la jornada.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s5">
+      <div class="chapter-head"><div class="num">5</div><h2>Remuneración y registración de la relación laboral</h2></div>
+      <div class="chapter-body">
+        <h3>Remuneración mínima</h3>
+        <p>La remuneración mínima correspondiente depende de la categoría y de la modalidad de trabajo, con retiro o sin retiro, y contempla valores por hora y mensuales.</p>
+        <p>Para el cálculo de sueldos sugerimos usar la calculadora provista por el gremio, ya que se adecua a la carga horaria y a la categoría con exactitud. Recordamos que este será el sueldo establecido por el gremio y es probable que algunos cuidadores acuerden un valor superior al indicado, pero tenemos este valor base del cual partir.</p>
+        <div class="link-row">
+          <a class="official-link" href="https://upacp.org.ar/?page_id=26745" target="_blank" rel="noopener">Abrir la calculadora del gremio <span class="arrow">→</span></a>
+        </div>
+
+        <h3>Registración de la relación laboral</h3>
+        <p>Cuando existe una relación laboral comprendida por la Ley 26.844, el empleador debe registrarla y cumplir con las obligaciones correspondientes, incluyendo aportes y contribuciones y los derechos laborales establecidos por la normativa.</p>
+        <p>La registración formaliza la relación laboral y garantiza al trabajador el acceso a los derechos correspondientes.</p>
+        <p>Según la Ley Nacional N.º 26.844 (Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares) no existe un tiempo o cantidad de horas mínimas.</p>
+        <p>La Ley N.º 26.844 aplica para toda persona que realice tareas domésticas o de asistencia en un hogar particular, independientemente de la carga horaria.</p>
+        <div class="alert">
+          <div class="alert-label">Desde el primer día</div>
+          <p>Aunque trabaje 1 hora a la semana, la registración en la ARCA (ex AFIP) es obligatoria desde el primer día de trabajo.</p>
+        </div>
+        <p>No hay período de prueba sin registrar; la registración garantiza la cobertura de la ART (Aseguradora de Riesgos del Trabajo), aportes jubilatorios y obra social.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s6">
+      <div class="chapter-head"><div class="num">6</div><h2>¿Cómo se emite el recibo de sueldo?</h2></div>
+      <div class="chapter-body">
+        <p>Los empleadores deben emitir el recibo de sueldo en forma electrónica, a través del servicio “Registro Especial del Personal de Casas Particulares”, ingresando con Clave Fiscal. La validación de identidad efectuada mediante dicho acceso constituye el requisito de autenticidad del recibo, sin necesidad de incorporar la firma del empleador en el documento.</p>
+        <p>Para su emisión, el empleador debe seleccionar la ficha del trabajador que corresponda e ingresar a la opción “Generar recibo de sueldo”. Allí se visualizará la identificación del trabajador y los datos generales de la relación laboral y del período a pagar.</p>
+        <p>Se debe informar en este último apartado el período a liquidar, la modalidad de liquidación, la remuneración y demás conceptos que correspondan para la determinación del importe a abonar y confirmar la operación a través del botón “Generar recibo sueldo”.</p>
+        <p>El recibo electrónico así emitido contiene los datos exigidos por la normativa laboral vigente, conforme lo dispuesto en el artículo 21 de la Ley del Régimen Especial de Contrato de Trabajo para el Personal de Casas Particulares Nº 26.844, garantizando tanto al empleador como al trabajador la correcta identificación de los conceptos liquidados y el acceso a la información relativa a la remuneración.</p>
+
+        <h3>¿En qué casos se debe imprimir el recibo electrónico de sueldo?</h3>
+        <p>El recibo debe imprimirse en los siguientes supuestos:</p>
+        <ul>
+          <li>Cuando el sueldo se pague en efectivo.</li>
+          <li>Cuando el trabajador así lo requiera.</li>
+        </ul>
+        <p>En tales casos, se debe imprimir por duplicado, entregándose el original al trabajador y conservando el empleador el duplicado, el cual deberá ser firmado por el trabajador.</p>
+        <div class="link-row">
+          <a class="official-link" href="https://servicioscf.arca.gob.ar/publico/sitio/contenido/novedad/ver.aspx?id=5900" target="_blank" rel="noopener">Ver la información de ARCA <span class="arrow">→</span></a>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Recomendación</div>
+          <p>Siempre es recomendable hacer el recibo de sueldo, ya que ahí consta si ya se le pagaron sus vacaciones, aguinaldos, horas extras, viáticos, etc., información que al transferirse al banco no queda detallada. Así se evita cualquier discusión en el futuro.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s7">
+      <div class="chapter-head"><div class="num">7</div><h2>ART: accidentes de trabajo y enfermedades</h2></div>
+      <div class="chapter-body">
+        <p>La ART es el sistema que brinda cobertura frente a accidentes de trabajo y enfermedades profesionales. Para el trabajador, esto significa contar con prestaciones médicas y económicas ante una contingencia laboral, incluyendo asistencia médica, medicamentos, rehabilitación, traslados y, cuando corresponde, indemnizaciones.</p>
+        <p>Para el empleador, contar con una ART permite cumplir con una obligación del sistema de riesgos del trabajo y contar con asesoramiento y asistencia para la prevención de riesgos, además de la cobertura de las prestaciones que correspondan ante un accidente o enfermedad profesional.</p>
+        <div class="tip">
+          <div class="tip-label">Importante</div>
+          <p>El trabajo registrado (“en blanco”) respalda tanto al empleador como a la persona cuidadora. Para acceder a la cobertura de ART, el empleador debe estar afiliado a una ART y registrar a la trabajadora. Esto brinda cobertura médica y ante accidentes laborales, permite acumular aportes para la jubilación y da respaldo legal al vínculo, haciendo que la relación laboral sea más transparente y segura.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s8">
+      <div class="chapter-head"><div class="num">8</div><h2>Asignaciones familiares</h2></div>
+      <div class="chapter-body">
+        <p>Son sumas que ANSES paga ante diferentes situaciones de la vida: casamiento, embarazo, nacimiento o adopción de un hijo, escolaridad, etc.</p>
+        <p>En particular, recordamos aquí que las asignaciones por hijo NO se pierden si el trabajador estaba sin registrar (“en negro”) y pasa a estar registrado. Es una excusa que muchas veces los trabajadores traen porque prefieren no estar registrados.</p>
+        <h3>Asignación Universal por Hijo</h3>
+        <p>Los progenitores deben estar desocupados, o ser trabajadores no registrados (sin aportes), o ser trabajadores del servicio doméstico.</p>
+        <div class="link-row">
+          <a class="official-link" href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/seguridad-social/asignacion-universal-por-hijo" target="_blank" rel="noopener">Más información sobre la AUH <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s9">
+      <div class="chapter-head"><div class="num">9</div><h2>Fuentes</h2></div>
+      <div class="chapter-body">
+        <div class="link-row">
+          <a class="official-link" href="https://upacp.org.ar/?page_id=26745" target="_blank" rel="noopener">UPACP, calculadora de sueldos <span class="arrow">→</span></a>
+          <a class="official-link" href="https://servicioscf.arca.gob.ar/publico/sitio/contenido/novedad/ver.aspx?id=5900" target="_blank" rel="noopener">ARCA, recibo de sueldo electrónico <span class="arrow">→</span></a>
+          <a class="official-link" href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/seguridad-social/asignacion-universal-por-hijo" target="_blank" rel="noopener">Argentina.gob.ar, Asignación Universal por Hijo <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Los valores y requisitos pueden actualizarse. Ante cualquier duda puntual, conviene confirmar con las fuentes oficiales o con el gremio.
+  </footer>
+
+</div>
+
+</body></html>
