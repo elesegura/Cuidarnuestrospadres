@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Médicos Recomendados</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Encabezado -->
+        <header class="mb-6 text-center">
+            <h1 class="text-3xl font-bold text-blue-900">Directorio de Médicos Recomendados</h1>
+            <p class="text-gray-600 mt-2">Cuidar a Nuestros Padres — Recomendados 2024 / 2025</p>
+        </header>
+
+        <!-- Banner Informativo + Botón a Google Forms -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">💡</span>
+                <p class="text-sm text-blue-900">
+                    <span class="font-semibold">¿Quieres recomendar a un profesional?</span> Completa nuestro formulario oficial para que lo sumemos a la base.
+                </p>
+            </div>
+            <a href="https://forms.gle/pwMiqxkQf7ipbfrA8" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition whitespace-nowrap shadow-sm inline-flex items-center gap-1.5">
+                <span>➕ Sugerir Médico</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+        </div>
+
+        <!-- Barra de Búsqueda -->
+        <div class="bg-white p-4 rounded-xl shadow-sm mb-6 flex flex-col md:flex-row gap-4">
+            <input type="text" id="searchInput" placeholder="Escribe para buscar (ej. Neurología, Palermo, Fleni, PAMI, CUD...)" class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+            <div class="flex items-center text-sm text-gray-500 font-medium justify-center">
+                Total registrado: <span id="counter" class="ml-1 font-bold text-blue-600">0</span>
+            </div>
+        </div>
+
+        <!-- Grilla de Médicos -->
+        <div id="gridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <script>
+        const medicos = [
+            // CLINICOS & ESTUDIOS
+            { nombre: "Dr. Sotelo, Claudio", especialidad: "Clínico", barrio: "Don Torcuato, Tigre", lugar: "Sanatorio Las Lomas / Domicilio / Virtual", contacto: "54 11 5755-6854", notas: "Médico de planta del Sanatorio Las Lomas. Auditoría. Consultas virtuales, domicilios y consultorio.", pami: "" },
+            { nombre: "Marcelo Pocovi", especialidad: "Dermatología", barrio: "-", lugar: "Consultorio privado", contacto: "54 11 4543-4807", notas: "", pami: "" },
+            { nombre: "Bersa Rx", especialidad: "Estudios a Domicilio", barrio: "CABA / AMBA", lugar: "A Domicilio", contacto: "www.bersarx.com", notas: "Radiografías digitales, colocación de sonda nasogástrica y análisis clínicos sin traslado.", pami: "" },
+            
+            // GERIATRIA
+            { nombre: "Dra. Giber, Fabiana", especialidad: "Geriatría", barrio: "Caballito, CABA", lugar: "Hospital Italiano", contacto: "54 11 4959-0300", notas: "Medicina interna. Jefa del Área Evaluación de Caídas en Adulto Mayor. Recomendada por años de experiencia.", pami: "" },
+            { nombre: "Matías Manzotti", especialidad: "Geriatría", barrio: "Recoleta, CABA", lugar: "Hospital Alemán / Domicilio", contacto: "-", notas: "Jefe de Geriatría y Gerontología y Director del Hospital Alemán. Presidente de la AAGG.", pami: "" },
+            
+            // KINESIOLOGIA
+            { nombre: "Lic. Kindsvater, Maria Josefina", especialidad: "Kinesiología Respiratoria", barrio: "-", lugar: "Consultorio / Domicilio", contacto: "54 11 2298-3878", notas: "Kinesiología, fisioterapia, especialista en pulmones y coaching ontológico.", pami: "" },
+            { nombre: "Lic. Sandra Caballero", especialidad: "Kinesiología", barrio: "Zona Norte (Escobar a Nordelta)", lugar: "Domicilio", contacto: "54 9 11 6613-7282", notas: "Vive en Escobar y atiende a domicilio desde Escobar a Nordelta.", pami: "" },
+            { nombre: "Lic. Carolina Marchuk", especialidad: "Kinesiología y Osteopatía", barrio: "Caballito, CABA", lugar: "Av. Rivadavia 4447, 2º P (Centro Kinésico Osteopático)", contacto: "54 11 5340-6636 / 54 11 2008-8966", notas: "Consultorio principal en Centro Kinésico Osteopático.", pami: "" },
+            { nombre: "Lic. Podzamczer, Jorge", especialidad: "Kinesiología Neurológica", barrio: "Palermo / Belgrano", lugar: "Fleni / Billinghurst 1566, P.1", contacto: "54 11 6036-8227 / 54 11 4821-2795", notas: "Rehabilitación neurológica y dolor (ACV, Parkinson, esclerosis múltiple, lesiones medulares). Excelente y muy amoroso.", pami: "" },
+            { nombre: "Lic. Sarmiento, Araceli", especialidad: "Kinesiología", barrio: "-", lugar: "Domicilio / Consultorio", contacto: "54 9 11 4402-2694", notas: "Kinesióloga buenísima. Atención a domicilio.", pami: "" },
+            { nombre: "Tony y Majo", especialidad: "Kinesiología", barrio: "-", lugar: "Domicilio / Consultorio", contacto: "54 11 3901-2465", notas: "Kinesiología a domicilio.", pami: "" },
+            { nombre: "Lic. Vargas, Irina", especialidad: "Kinesiología y RPG", barrio: "Balvanera / Recoleta", lugar: "Pain Care / Domicilio", contacto: "54 9 11 3055-2537", notas: "Fisioterapeuta, RPG, Kinesiología y Stretching Global Activo. Excelente.", pami: "" },
+            { nombre: "Pain Care (Dr. Santiago Guaycochea)", especialidad: "Medicina del Dolor", barrio: "Balvanera, CABA", lugar: "Paraguay 2302, Piso 21 'A'", contacto: "54 11 4961-6468 / 6619", notas: "Abordaje integral del dolor crónico. Neurocirugía (Dra. Lovaglio), Psiquiatría (Dra. Borenstein), Neurología y Kinesiología.", pami: "" },
+
+            // NEUROLOGIA & CENTROS
+            { nombre: "Dr. Allegri, Ricardo", especialidad: "Neurología / Memoria", barrio: "Belgrano / Barrio Norte", lugar: "Fleni / Av. Santa Fe 2245, P.1", contacto: "54 9 11 4478-1685 (Secretaria Mirta) / 4823-1445", notas: "Jefe de Neurología Cognitiva y Neuropsicología del Fleni. Especialista en memoria. Equipo interdisciplinario.", pami: "" },
+            { nombre: "Dra. Casas, Magdalena", especialidad: "Neurología (Esclerosis Múltiple)", barrio: "CABA", lugar: "La Trinidad (Av. Córdoba) / Ramos Mejía / Hosp. Alemán", contacto: "-", notas: "Especialista en esclerosis múltiple. Atiende por Swiss Medical en La Trinidad.", pami: "" },
+            { nombre: "Dr. Castro, Diego", especialidad: "Neurología Cognitiva", barrio: "Palermo / Almagro", lugar: "CEMIC Palermo / Castro Barros 292", contacto: "54 9 11 3465-1033", notas: "Neurología cognitiva y trastornos de la memoria.", pami: "" },
+            { nombre: "Dr. Caride, Alejandro", especialidad: "Neurología", barrio: "Recoleta, CABA", lugar: "Hospital Alemán / Consultorio particular", contacto: "54 9 11 4074-8107 (Secretario) / 4829-9140", notas: "Jefe de Neurología del Hospital Alemán. Recomendado por ACV. Horario: 15 a 19 hs.", pami: "" },
+            { nombre: "Dra. Cecilia Fernandez", especialidad: "Neurología", barrio: "CABA", lugar: "Hospital Italiano / Marcelo T. de Alvear 2442 PB 1", contacto: "54 9 11 6159-5361 / 6188-3070 (WhatsApp)", notas: "Neuróloga del Hospital Italiano y consultorio particular.", pami: "" },
+            { nombre: "Dr. Gomez Arevalo, Gonzalo", especialidad: "Neurología (Mov. Anormales)", barrio: "Olivos / AMBA", lugar: "Av. del Libertador 1907 / Domicilios", contacto: "54 9 11 4183-4100", notas: "Atiende exclusivamente de forma privada. Visitas a domicilio por AMBA e interior.", pami: "" },
+            { nombre: "Dr. Merello", especialidad: "Neurología (Mov. Anormales)", barrio: "Belgrano / Recoleta", lugar: "Fleni Belgrano / Consultorio Recoleta", contacto: "54 9 11 2252-1293", notas: "Jefe de Movimientos Anormales en Fleni. Excelente.", pami: "" },
+            { nombre: "Dr. Miranda", especialidad: "Neurología", barrio: "Palermo, CABA", lugar: "Consultorio en Palermo (cerca de Sta Fe y Scalabrini Ortiz)", contacto: "54 9 11 3301-5602", notas: "Atiende por OSDE y amplio rango de prepagas. Consultas no onerosas.", pami: "" },
+            { nombre: "Dr. Víctor Gastón Moreno Milicich", especialidad: "Neurología Cognitiva / Parkinson", barrio: "Palermo, CABA", lugar: "La Trinidad Palermo / Fleni / Av. Santa Fe 3288", contacto: "54 9 11 5007-4967", notas: "Trastornos del movimiento, Parkinson y neurofisiología. Evaluaciones virtuales y domicilios/geriátricos.", pami: "" },
+            { nombre: "Dr. Perez Leguizamón, Patricio", especialidad: "Neurología", barrio: "San Isidro / CABA", lugar: "CEMIC / Consultorio San Isidro", contacto: "-", notas: "Muy cálido y dedicado. Atiende en CEMIC y en San Isidro (algunas prepagas).", pami: "" },
+            { nombre: "Dr. Previgliano", especialidad: "Neurología / Terapia Intensiva", barrio: "Recoleta / Zona Norte", lugar: "Azcuénaga 1061 / IADT (M.T. de Alvear 2400)", contacto: "54 9 11 3351-5541 (Asistente Florencia) / 4822-4320", notas: "Jefe de Neurología del IADT. Recomendado para demencia vascular. Ex-director Hosp. Fernández y ex-Fleni. Presencial y virtual.", pami: "" },
+            { nombre: "Centro ENERI (Dr. Lylyk)", especialidad: "Neurología / Neurocirugía", barrio: "Belgrano, CABA", lugar: "Av. del Libertador y Congreso", contacto: "-", notas: "Clínica del Dr. Lylyk. Excelentes neurólogos y pacientes muy conformes.", pami: "" },
+            { nombre: "FLENI (Sede Belgrano)", especialidad: "Neurología (Guardia/Demanda)", barrio: "Belgrano, CABA", lugar: "Montañeses 2325", contacto: "-", notas: "Ofrece atención sin turno previos ciertos días de la semana.", pami: "" },
+            { nombre: "Hospital Británico (Sede Central)", especialidad: "Neurología / Hakim-Adams", barrio: "Barracas, CABA", lugar: "Perdriel 74", contacto: "-", notas: "Equipo fantástico especializado en hidrocefalia normotensiva (síndrome de Hakim-Adams).", pami: "" },
+            { nombre: "Hospital Fernández", especialidad: "Neurología", barrio: "Palermo, CABA", lugar: "Cerviño 3356", contacto: "-", notas: "Servicio con muy buenos neurólogos.", pami: "" },
+            { nombre: "INECO", especialidad: "Neurología / Neuropsicología", barrio: "Recoleta, CABA", lugar: "Pacheco de Melo 1860", contacto: "-", notas: "Centro especializado con seguimiento mensual, actividades y atención integral cognitiva.", pami: "" },
+            { nombre: "Swiss Medical (Centro de Neurología)", especialidad: "Neurología", barrio: "Palermo, CABA", lugar: "A la vuelta del Sanatorio Los Arcos", contacto: "-", notas: "Centro propio exclusivo para Neurología de Swiss Medical.", pami: "" },
+
+            // OFTALMOLOGIA & CLINICAS
+            { nombre: "Dra. Susana Liliana Cura", especialidad: "Oftalmología (Retina)", barrio: "Almagro, CABA", lugar: "Hospital Italiano (Perón 4190)", contacto: "54 11 4959-0300", notas: "Jefa de Sección Retina y Vítreo. Especialista en casos complejos.", pami: "" },
+            { nombre: "Dr. Casiraghi, Javier", especialidad: "Oftalmología (Glaucoma)", barrio: "Recoleta, CABA", lugar: "Arenales 2245, Piso 4", contacto: "54 11 6539-1086", notas: "Especialista en glaucoma y cataratas. Muy recomendado, sin obra social, turnos con demora.", pami: "" },
+            { nombre: "Dr. Saenz Valiente, Agustín", especialidad: "Oftalmología (Cataratas)", barrio: "Recoleta, CABA", lugar: "Av. Quintana 189, 3º 'A'", contacto: "54 9 11 4815-1830", notas: "Cirugías de cataratas, córnea y refractiva. Altamente recomendado.", pami: "" },
+            { nombre: "Centro Charles (Dr. Francone / Dra. Raggio)", especialidad: "Oftalmología (Maculopatía)", barrio: "CABA", lugar: "Centro Charles", contacto: "-", notas: "Especialistas en maculopatía, inyecciones mensuales y coordinación con droguería.", pami: "" },
+            { nombre: "Kaufer Clínica de Ojos", especialidad: "Neuro-oftalmología", barrio: "CABA / Zona Norte", lugar: "Clínica Kaufer", contacto: "54 9 11 5000-0234", notas: "Buen equipo médico con neuro-oftalmólogos disponibles para casos neurológicos.", pami: "" },
+
+            // PSIQUIATRIA & NEUROPSICOLOGIA
+            { nombre: "Dr. Begue, Alejandro Luis", especialidad: "Psiquiatría / Psicogerontología", barrio: "Coghlan, CABA", lugar: "Pinto 3207 / Domicilios / Geriátricos", contacto: "54 9 11 4532-9742", notas: "Médico clínico, Psicoanalista y Psiquiatra de tercera edad. Ayuda a centralizar la organización del adulto mayor (acompañantes, controles, etc.).", pami: "" },
+            { nombre: "Dr. Carísimo, Edgardo", especialidad: "Psiquiatría y Cardiología", barrio: "San Isidro / Zona Norte", lugar: "Consultorio privado", contacto: "54 9 11 5699-4099", notas: "Médico Psiquiatra y Cardiólogo.", pami: "" },
+            { nombre: "Dra. Carrozzino, Maria Eugenia", especialidad: "Psiquiatría", barrio: "Beccar / Online", lugar: "Consultorio privado / Online", contacto: "54 9 11 6534-3009", notas: "Excelente, seria, muy criteriosa y muy cariñosa. Atiende presencial y virtual.", pami: "" },
+            { nombre: "Dr. Chiaretta, Luciano", especialidad: "Psiquiatría", barrio: "San Fernando y San Martín", lugar: "Consultorio privado", contacto: "54 9 11 6121-2724", notas: "Psiquiatra en San Fernando y San Martín.", pami: "" },
+            { nombre: "Dra. Cohen Ce, Vero", especialidad: "Psiquiatría / Legista", barrio: "CABA", lugar: "Consultorio privado", contacto: "54 9 11 6254-2002", notas: "Hace informes CUD (Certificado Único de Discapacidad). Magíster en Psicofarmacología y Médica Legista.", pami: "" },
+            { nombre: "Dra. Di Pietro, Claudia", especialidad: "Psiquiatría", barrio: "Beccar – San Isidro", lugar: "Consultorio privado", contacto: "54 9 11 5494-4899", notas: "Psiquiatra en Beccar / San Isidro.", pami: "" },
+            { nombre: "Dra. Infantino, Silvina", especialidad: "Psiquiatría", barrio: "CABA / Online", lugar: "Atención por WhatsApp / Consultorio", contacto: "54 9 11 4917-8807", notas: "Hace informes para CUD (Certificado Único de Discapacidad) y atiende por WhatsApp.", pami: "" },
+            { nombre: "Dr. Kuttel, Maximiliano", especialidad: "Psiquiatría", barrio: "CABA", lugar: "Hospital Italiano", contacto: "54 9 11 5517-7038", notas: "Psiquiatra en el Hospital Italiano.", pami: "" },
+            { nombre: "Dra. Mesples, Ursula", especialidad: "Psiquiatría", barrio: "San Isidro", lugar: "CEMIC / Consultorio San Isidro", contacto: "54 9 11 4186-6027", notas: "Atiende por OSDE en San Isidro.", pami: "" },
+            { nombre: "Dr. Larré, Nicolás", especialidad: "Psiquiatría", barrio: "Almagro, CABA", lugar: "CEMIC / Sarmiento 4041, 1º P, Off 10", contacto: "54 11 4861-5586", notas: "Atiende en CEMIC. Modalidad virtual y presencial.", pami: "" },
+            { nombre: "Dra. Palacio, Laura", especialidad: "Psiquiatría / Psicogerontología", barrio: "Recoleta, CABA", lugar: "Agüero 1287 / Posadas 1575 4º C", contacto: "54 9 11 4147-1596", notas: "Especialista en psico-gerontología. Taller de estimulación cognitiva en Fund. Arg. de Salud Mental.", pami: "" },
+            { nombre: "Dra. Pereyra, Silvia", especialidad: "Neuropsicología / Fonoaudiología", barrio: "Palermo y Olivos", lugar: "Olivos / A 1 cuadra de Alto Palermo", contacto: "54 9 11 3261-6207", notas: "Muy humana y con experiencia. Recomendada para problemas cognitivos post-accidente y rehabilitación del lenguaje.", pami: "" },
+            { nombre: "Dr. Vinacour, Carlos", especialidad: "Psiquiatría", barrio: "Palermo, CABA", lugar: "CEMIC / Las Heras y Ugarteche", contacto: "54 9 11 5969-3566", notas: "Mucha paciencia con gente mayor. Gran interés en el seguimiento y mejora constante.", pami: "" },
+
+            // PAMI
+            { nombre: "Dra. Seijas, Maria Belen", especialidad: "Neurología (PAMI)", barrio: "Quilmes / Balvanera", lugar: "Hospital Español (Av. Belgrano 2975) / Quilmes", contacto: "54 11 4959-6200 / 54 9 11 6950-9851", notas: "Neuróloga en Hospital Español de Bs. As.", pami: "Sí (Hospital Español)" },
+            { nombre: "Dr. Bernater", especialidad: "Neurología (PAMI)", barrio: "La Paternal, CABA", lugar: "Donato Álvarez 1920", contacto: "54 9 11 4583-5560", notas: "Atiende por PAMI.", pami: "Sí" },
+            { nombre: "Dr. Cutuli", especialidad: "Oncología (PAMI)", barrio: "CABA", lugar: "Sanatorio Sirio Libanés", contacto: "Turnos rápidos por Sanatorio", notas: "Especialista en cáncer de próstata. Recomendadísimo, turnos rápidos.", pami: "Sí" }
+        ];
+
+        function renderMedicos(lista) {
+            const container = document.getElementById('gridContainer');
+            document.getElementById('counter').innerText = lista.length;
+            container.innerHTML = '';
+
+            if (lista.length === 0) {
+                container.innerHTML = '<p class="col-span-full text-center text-gray-500 py-12">No se encontraron resultados para tu búsqueda.</p>';
+                return;
+            }
+
+            lista.forEach(m => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full">${m.especialidad}</span>
+                            <span class="text-xs text-gray-500 font-medium">${m.barrio}</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-900 mb-1">${m.nombre}</h3>
+                        <p class="text-sm text-gray-600 mb-2">📍 ${m.lugar}</p>
+                        <p class="text-sm text-gray-800 mb-3 font-semibold">📞 ${m.contacto}</p>
+                        ${m.notas ? `<p class="text-xs text-gray-500 bg-gray-50 p-2.5 rounded-lg mb-3">💬 ${m.notas}</p>` : ''}
+                    </div>
+                    ${m.pami ? `<div class="mt-2 text-xs font-bold text-green-700 bg-green-50 px-2.5 py-1 rounded inline-block w-max">Atiende por PAMI: ${m.pami}</div>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Búsqueda en tiempo real
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const texto = e.target.value.toLowerCase();
+            const filtrados = medicos.filter(m => {
+                return Object.values(m).some(val => String(val).toLowerCase().includes(texto));
+            });
+            renderMedicos(filtrados);
+        });
+
+        // Inicializar la vista
+        renderMedicos(medicos);
+    </script>
+</body>
+</html>
